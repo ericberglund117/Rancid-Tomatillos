@@ -19,11 +19,11 @@ class App extends Component {
   separateMovies() {
     const moviesToDisplay = this.state.movies.map((movie, index)=> {
       return (
-        <section>
+        <section key={index}>
           <img src={movie.poster_path}></img>
-          <h2 key={index}>{movie.title}</h2>
-          <h3 key={index}>{movie.average_rating}</h3>
-          <h3 key={index}>{movie.release_date}</h3>
+          <h2>{movie.title}</h2>
+          <h3>{movie.average_rating}</h3>
+          <h3>{movie.release_date}</h3>
         </section>
       )
     })
@@ -37,7 +37,9 @@ class App extends Component {
   render() {
     return (
       <section>
-        <h1>Rancid Tomatillos</h1>
+        <header>
+          <h1>Rancid Tomatillos</h1>
+        </header>
         <h2>{this.separateMovies()}</h2>
       </section>
     )
