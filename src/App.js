@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Api from './Api';
 import './App.css';
 import Film from './images/film-reel.png'
 import Tomatillos from './images/tomatillo.png'
