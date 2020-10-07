@@ -19,17 +19,19 @@ class App extends Component {
   separateMovies() {
     const moviesToDisplay = this.state.movies.map((movie, index)=> {
       return (
-        <section key={index}>
-          <img src={movie.poster_path}></img>
-          <h2>{movie.title}</h2>
-          <h3>{movie.average_rating}</h3>
-          <h3>{movie.release_date}</h3>
+        <section key={index} className='poster-card' id={movie.id}>
+          <img className='image-poster' src={movie.poster_path}></img>
+          <section className='poster-card-text'>
+            <h2 className='title-poster'>{movie.title}</h2>
+            <h3 className='rating-poster'>{movie.average_rating}</h3>
+            <h3 className='release-date-poster'>{movie.release_date}</h3>
+          </section>
         </section>
       )
     })
     return (
       <section className="movies-list">
-        <h2>{moviesToDisplay}</h2>
+        {moviesToDisplay}
       </section>
     )
   }
@@ -40,7 +42,7 @@ class App extends Component {
         <header>
           <h1>Rancid Tomatillos</h1>
         </header>
-        <h2>{this.separateMovies()}</h2>
+        <section className='all-cards'>{this.separateMovies()}</section>
       </section>
     )
   }
