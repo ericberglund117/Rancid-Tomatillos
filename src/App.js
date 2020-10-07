@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Api from './Api';
 import './App.css';
 import Film from './images/film-reel.png'
+import Tomatillos from './images/tomatillo.png'
 import Movies from './Movies.js'
 
 class App extends Component {
@@ -16,42 +17,16 @@ class App extends Component {
 
   componentDidMount() {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Something went wrong...');
-      }
-    })
+    .then(response => response.json())
     .then(data => this.setState({ movies: data.movies }))
     .catch(error => this.setState({ error, isLoading: false}));
   }
-
-  // separateMovies() {
-  //   const moviesToDisplay = this.state.movies.map((movie, index)=> {
-  //     return (
-  //       <article key={index} className='poster-card' id={movie.id}>
-  //         <img className='image-poster' src={movie.poster_path}></img>
-  //         <section className='poster-card-text'>
-  //           <h2 className='title-poster'>{movie.title}</h2>
-  //           <h3 className='rating-poster'>{movie.average_rating}</h3>
-  //           <h3 className='release-date-poster'>{movie.release_date}</h3>
-  //         </section>
-  //       </article>
-  //     )
-  //   })
-  //   return (
-  //     <section className="movies-list">
-  //       {moviesToDisplay}
-  //     </section>
-  //   )
-  // }
 
   render() {
     const { movies, isLoading, error } = this.state;
 
     if (error) {
-      return <p>{error.message}</p>;
+      return <p>{'Something went wrong...'}</p>;
     }
 
     if (isLoading) {
@@ -60,7 +35,8 @@ class App extends Component {
     return (
       <section>
         <header>
-          <h1>Rancid Tomatillos</h1>
+          <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
+          <img className='flim-reel' src={Film}/>
         </header>
         <section className='all-cards'>
         < Movies movies={this.state.movies} />
