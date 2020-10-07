@@ -3,7 +3,7 @@ import Api from './Api';
 import './App.css';
 import Film from './images/film-reel.png'
 import Tomatillos from './images/tomatillo.png'
-import Movies from './Movies.js'
+import Movies from './movies/Movies.js'
 
 class App extends Component {
   constructor() {
