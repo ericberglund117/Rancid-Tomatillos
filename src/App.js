@@ -1,46 +1,46 @@
 import React, { Component } from 'react';
 import Api from './Api';
 import './App.css';
+import Film from './images/film-reel.png'
+import Tomatillos from './images/tomatillo.png'
+import Movies from './Movies.js'
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: []
+      movies: [],
+      isLoading: false,
+      error: null,
     };
   }
 
   componentDidMount() {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
     .then(response => response.json())
-    .then(data => this.setState({ movies: data.movies }));
-  }
-
-  separateMovies() {
-    const moviesToDisplay = this.state.movies.map((movie, index)=> {
-      return (
-        <section key={index}>
-          <img src={movie.poster_path}></img>
-          <h2>{movie.title}</h2>
-          <h3>{movie.average_rating}</h3>
-          <h3>{movie.release_date}</h3>
-        </section>
-      )
-    })
-    return (
-      <section className="movies-list">
-        <h2>{moviesToDisplay}</h2>
-      </section>
-    )
+    .then(data => this.setState({ movies: data.movies }))
+    .catch(error => this.setState({ error, isLoading: false}));
   }
 
   render() {
+    const { movies, isLoading, error } = this.state;
+
+    if (error) {
+      return <p>{'Something went wrong...'}</p>;
+    }
+
+    if (isLoading) {
+      return <p>Loading...</p>;
+    }
     return (
       <section>
         <header>
-          <h1>Rancid Tomatillos</h1>
+          <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
+          <img className='flim-reel' src={Film}/>
         </header>
-        <h2>{this.separateMovies()}</h2>
+        <section className='all-cards'>
+        < Movies movies={this.state.movies} />
+        </section>
       </section>
     )
   }

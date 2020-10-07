@@ -1,0 +1,17 @@
+.image-poster{
+  height: 20rem;
+  width: auto;
+}
+.poster-card-text{
+
+}
+.poster-card{
+  text-align: center;
+  border-color: blue;
+  border-style: solid;
+  margin: 1rem;
+}
+.movies-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
