@@ -12,6 +12,7 @@ class App extends Component {
       movies: [],
       isLoading: false,
       error: null,
+      user: {}
     };
   }
 
@@ -22,8 +23,8 @@ class App extends Component {
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
-  toggleDisplay() {
-
+  setUser = (newUser) => {
+    this.setState({user: newUser})
   }
 
   render() {
@@ -41,7 +42,8 @@ class App extends Component {
         <header>
           <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
           <img className='flim-reel' src={Film}/>
-          <button onClick={() => this.toggleDisplay()}>Login</button>
+          <button>Login</button>
+          <Login setUser={this.setUser}/>
         </header>
         <section className='all-cards'>
         < Movies movies={this.state.movies} />

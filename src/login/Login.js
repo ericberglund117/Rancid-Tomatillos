@@ -11,18 +11,20 @@ class Login extends Component {
     };
   }
 
-  handleChange = event => {
-    this.setState({[event.target.name]: event.target.value})
+  handleChange = (event) => {
+    const {name, value} = event.target
+    this.setState({[name]: value})
   }
 
-  submitLogin = event => {
+  submitLogin = (event) => {
     event.preventDefault();
     const newLogin = this.state
+    this.getUser(newLogin)
   }
   // need user to log in
   // need to include email and name as empty strings
   // email and name will then fill in with the input values
-  componentDidMount(login) {
+  getUser = (login) => {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login",
     {
       method: 'POST',
@@ -32,11 +34,12 @@ class Login extends Component {
       body: JSON.stringify(login)
     })
     .then(response => response.json())
+    .then(data => this.props.setUser(login))
     .catch(error => this.setState({ error }));
   }
 
   render() {
-    const { username, password, error } = this.state;
+    const { email, password, error } = this.state;
 
     if (error) {
       return <p>{'Username or password is incorrect'}</p>;
@@ -44,18 +47,23 @@ class Login extends Component {
 
     return (
       <form>
+      <label htmlFor="email">
+        Email
+      </label>
         <input
           type="text"
           placeholder="Email"
-          title="email"
+          name="email"
           value={this.state.email}
           onChange={event => this.handleChange(event)}
         />
-
+        <label htmlFor="password">
+          Password
+        </label>
         <input
-          type="text"
+          type="password"
           placeholder="Password"
-          title="password"
+          name="password"
           value={this.state.password}
           onChange={event => this.handleChange(event)}
         />
