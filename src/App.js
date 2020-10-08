@@ -3,6 +3,7 @@ import './App.css';
 import Film from './images/film-reel.png'
 import Tomatillos from './images/tomatillo.png'
 import Movies from './movies/Movies.js'
+import Login from "./login/Login.js"
 
 class App extends Component {
   constructor() {
@@ -21,6 +22,10 @@ class App extends Component {
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
+  toggleDisplay() {
+
+  }
+
   render() {
     const { movies, isLoading, error } = this.state;
 
@@ -36,6 +41,7 @@ class App extends Component {
         <header>
           <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
           <img className='flim-reel' src={Film}/>
+          <button onClick={() => this.toggleDisplay()}>Login</button>
         </header>
         <section className='all-cards'>
         < Movies movies={this.state.movies} />
