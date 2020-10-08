@@ -42,8 +42,9 @@ class App extends Component {
         <header>
           <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
           <img className='flim-reel' src={Film}/>
-          <button>Login</button>
-          <Login setUser={this.setUser}/>
+          <h1> Welcome {this.state.user.name || 'Movie Goer'}!</h1>
+          <button>Login</button> <button>Logout</button>
+          <Login setUser={this.setUser} />
         </header>
         <section className='all-cards'>
         < Movies movies={this.state.movies} />

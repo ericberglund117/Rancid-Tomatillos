@@ -20,11 +20,16 @@ class Login extends Component {
     const newLogin = this.state
     this.getUser(newLogin)
     this.clearInputs();
+    //this.displayWelcomeMessage()
   }
 
   clearInputs = () => {
     this.setState({email:'', password:''})
   }
+
+  // displayWelcomeMessage = () => {
+  //   return <h1>Welcome</h1>
+  // }
 
   getUser = (login) => {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login",
