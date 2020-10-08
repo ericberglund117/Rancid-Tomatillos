@@ -27,6 +27,10 @@ class App extends Component {
     this.setState({user: newUser})
   }
 
+  submitLogout = (event) => {
+    this.setState({user: {}})
+  }
+
   render() {
     const { movies, isLoading, error } = this.state;
 
@@ -41,9 +45,12 @@ class App extends Component {
       <section>
         <header>
           <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
-          <img className='flim-reel' src={Film}/>
           <h1> Welcome {this.state.user.name || 'Movie Goer'}!</h1>
-          <button>Login</button> <button>Logout</button>
+          <button>Login</button>
+          <button
+            type="button"
+            onClick={event => this.submitLogout(event)}>Logout</button>
+          <img className='flim-reel' src={Film}/>
           <Login setUser={this.setUser} />
         </header>
         <section className='all-cards'>
