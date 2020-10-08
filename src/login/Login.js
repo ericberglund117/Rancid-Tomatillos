@@ -21,9 +21,7 @@ class Login extends Component {
     const newLogin = this.state
     this.getUser(newLogin)
   }
-  // need user to log in
-  // need to include email and name as empty strings
-  // email and name will then fill in with the input values
+
   getUser = (login) => {
     fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login",
     {
