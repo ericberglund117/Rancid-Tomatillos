@@ -8,8 +8,8 @@ const Movies = ({movies}) => {
           <img className='image-poster' src={movie.poster_path}></img>
           <section className='poster-card-text'>
             <h2 className='title-poster'>{movie.title}</h2>
-            <h3 className='rating-poster'>{movie.average_rating}</h3>
-            <h3 className='release-date-poster'>{movie.release_date}</h3>
+            <h3 className='rating-poster'>Average Rating: {movie.average_rating}</h3>
+            <h3 className='release-date-poster'>Release Date: {movie.release_date}</h3>
           </section>
         </article>
       )
