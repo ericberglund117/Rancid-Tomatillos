@@ -56,9 +56,11 @@ class App extends Component {
           // <Route path='/' render={() => <Movies movies={this.state.movies} /> } />
           // <Route path='/logout' render={() => <App />} />
         </Switch>
-        // <section className='all-cards'>
-        //   <Movies movies={this.state.movies} />
-        // </section>
+        {/* <section className='all-cards'>
+          <Movies movies={this.state.movies} />
+        </section> */
+        }
+        <Movies />
       </section>
     )
   }
