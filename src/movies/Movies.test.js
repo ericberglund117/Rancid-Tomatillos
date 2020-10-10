@@ -1,4 +1,4 @@
-import React, from 'react';
+import React from 'react';
 import { render, screen } from '@testing-library/react'
 import Movies from './Movies.js';
 import '@testing-library/jest-dom'
@@ -6,7 +6,7 @@ import {Router} from 'react-router-dom'
 
 describe("Movies", () => {
   it("Should render a movie", () => {
-    render(<Movie
+    render(<Movies
             image=
               <img
                 src='https://image.tmdb.org/t/p/original/
@@ -18,7 +18,7 @@ describe("Movies", () => {
             rating={6}
             date='2020-09-04'
             />);
-    expect(screen.getByTest('Mulan')).toBeInTheDocument();
+    expect(screen.getByText('2020-09-04')).toBeInTheDocument();
   })
 
 })
