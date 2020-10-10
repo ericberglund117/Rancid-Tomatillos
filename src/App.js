@@ -10,19 +10,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
       isLoading: false,
       error: null,
       user: {}
     };
-  }
-
-  componentDidMount() {
-    console.log('hello')
-    fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
-    .then(response => response.json())
-    .then(data => this.setState({ movies: data.movies }))
-    .catch(error => this.setState({ error, isLoading: false}));
   }
 
   setUser = (newUser) => {
@@ -60,8 +51,9 @@ class App extends Component {
           <Login setUser={this.setUser} />
         </header>
         <Switch>
-          <Route path='/' render={() => <Movies movies={this.state.movies} /> } />
           <Route exact path='/signin' render={() => <Login setUser={this.setUser} /> } />
+          <Route path='/' Component = <Movies /> />
+          // <Route path='/' render={() => <Movies movies={this.state.movies} /> } />
           // <Route path='/logout' render={() => <App />} />
         </Switch>
         // <section className='all-cards'>
