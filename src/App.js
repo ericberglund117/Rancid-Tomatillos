@@ -3,7 +3,8 @@ import './App.css';
 import Film from './images/film-reel.png';
 import Tomatillos from './images/tomatillo.png';
 import { Movies } from './movies/Movies.js';
-import Login from "./login/Login.js";
+import Login from './login/Login.js';
+import SingleMovie  from './single-movie/SingleMovie.js'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 class App extends Component {
@@ -62,7 +63,8 @@ class App extends Component {
             <Movies movies={this.state.movies} />
           </section> */
           }
-          <Movies />
+          <Movies movieid={this.getMovieID}/>
+          <SingleMovie />
           </Route>
         </BrowserRouter>
       </section>
