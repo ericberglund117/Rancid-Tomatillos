@@ -1,4 +1,4 @@
-// import React from 'react';
+import React from 'react';
 //
 // // const apiFetcher = {
 // //   getAllData() {
@@ -7,4 +7,4 @@
 // // }
 //
 //
-// export default apiFetcher;
+export default ;
