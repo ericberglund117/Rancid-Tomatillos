@@ -4,7 +4,7 @@ import Movies from './Movies';
 import '@testing-library/jest-dom';
 import { getAllMovies } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
-//import {Router} from 'react-router-dom'
+
 
 describe("Movies", () => {
   it('should render a movie', async () => {
