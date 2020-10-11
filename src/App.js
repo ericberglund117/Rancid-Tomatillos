@@ -4,7 +4,7 @@ import Film from './images/film-reel.png';
 import Tomatillos from './images/tomatillo.png';
 import Movies from './movies/Movies.js';
 import Login from "./login/Login.js";
-import { Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 class App extends Component {
   constructor() {
@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       isLoading: false,
       error: null,
-      user: {}
+      user: {},
     };
   }
 
@@ -36,29 +36,35 @@ class App extends Component {
     }
     return (
       <section>
-        <header>
-          <Link to='/'>
-          <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
-          </Link>
-          <h2> Welcome {this.state.user.name || 'Movie Goer'}!</h2>
-            <Link to='/signin'>
-            <button type="button">Login</button>
+      <BrowserRouter>
+        <Route>
+          <header>
+            <Link to='/'>
+            <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
             </Link>
-          <button
-            type="button"
-            onClick={event => this.submitLogout(event)}>Logout</button>
-          <img className='flim-reel' src={Film}/>
-          <Login setUser={this.setUser} />
-        </header>
-        <Switch>
-          <Route exact path='/signin' render={() => <Login setUser={this.setUser} /> } />
-          <Route path='/' Component = <Movies /> />
-          // <Route path='/' render={() => <Movies movies={this.state.movies} /> } />
-          // <Route path='/logout' render={() => <App />} />
-        </Switch>
-        // <section className='all-cards'>
-        //   <Movies movies={this.state.movies} />
-        // </section>
+            <h2> Welcome {this.state.user.name || 'Movie Goer'}!</h2>
+              <Link to='/signin'>
+              <button type="button">Login</button>
+              </Link>
+            <button
+              type="button"
+              onClick={event => this.submitLogout(event)}>Logout</button>
+            <img className='flim-reel' src={Film}/>
+            <Login setUser={this.setUser} />
+          </header>
+            <Switch>
+              <Route exact path='/signin' render={() => <Login setUser={this.setUser} /> } />
+              <Route path='/' Component = <Movies /> />
+              // <Route path='/' render={() => <Movies movies={this.state.movies} /> } />
+              // <Route path='/logout' render={() => <App />} />
+            </Switch>
+          {/* <section className='all-cards'>
+            <Movies movies={this.state.movies} />
+          </section> */
+          }
+          <Movies />
+          </Route>
+        </BrowserRouter>
       </section>
     )
   }
