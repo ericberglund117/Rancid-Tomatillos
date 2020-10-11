@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getAllMovies } from '../apiCalls'
 import "./Movies.css"
 
 export class Movies extends Component {
@@ -50,9 +51,3 @@ export class Movies extends Component {
     )
   }
 };
-
-export let getAllMovies = () => {
-  return fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
-  .then(response => response.json())
-}
-//export default { Movies, getAllMovies };
