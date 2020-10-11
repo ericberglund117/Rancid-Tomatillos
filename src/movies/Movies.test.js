@@ -1,5 +1,4 @@
 import React from 'react';
-import { render, waitFor, screen } from '@testing-library/react'
 import Movies from './Movies.js';
 import '@testing-library/jest-dom'
 jest.mock('../apiCalls.js')
