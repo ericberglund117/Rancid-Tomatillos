@@ -5,22 +5,23 @@ import { getSingleMovie } from '../apiCalls'
 
 
 export default class SingleMovie extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(props)
     this.state = {
       singleMovie: {},
     };
   }
 
-  fetchSingleMovie() {
-    getSingleMovie(this.props.getMovieID())
+  getTheMovieData() {
+    console.log(this)
+    getSingleMovie(this.props.id)
     .then(data => this.setState({ singleMovie: data.movie }))
-    .then(console.log(this.state.singleMovie))
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
   render() {
-    console.log(this.state)
+    this.getTheMofvieData()
     return (
       <section className="single-movie">
         <h2 className='title-poster-backdrop'>

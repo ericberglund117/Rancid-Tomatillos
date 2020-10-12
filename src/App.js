@@ -63,8 +63,7 @@ class App extends Component {
             <Movies movies={this.state.movies} />
           </section> */
           }
-          <Movies movieid={this.getMovieID}/>
-          <SingleMovie />
+          <Movies/>
           </Route>
         </BrowserRouter>
       </section>

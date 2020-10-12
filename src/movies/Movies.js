@@ -8,12 +8,17 @@ export class Movies extends Component {
     super();
     this.state = {
       movies: [],
+      showComponent:false,
+      selectImageID: 0,
     };
+    this.getMovieID= this.getMovieID.bind(this)
   }
 
   getMovieID(event) {
     console.log(event.currentTarget.dataset.id)
-    return event.currentTarget.dataset.id
+    let targetMovieId = event.currentTarget.dataset.id
+    this.setState({showComponent: true})
+    this.setState({selectImageID: targetMovieId})
   };
 
   componentDidMount () {
@@ -22,7 +27,7 @@ export class Movies extends Component {
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
-  render () {
+  render() {
     return (
       <section className="movies-list">
         {this.state.movies.map((movie, index) => {
@@ -41,6 +46,9 @@ export class Movies extends Component {
             </article>
           )
         })}
+        {this.state.showComponent ?
+          <SingleMovie id={this.state.selectImageID}/> : null
+        }
       </section>
     )
   }
