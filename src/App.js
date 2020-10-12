@@ -52,6 +52,14 @@ class App extends Component {
           </header>
               <Route exact path='/' render= { () => <Movies /> } />
               <Route exact path='/signin' render={() => <Login setUser={this.setUser} /> } />
+              <Route
+                path="/movies/:movie_id"
+                exact
+                render={({match}) => {
+                  const { movie_id } = match.params;
+                  return <SingleMovie {...getMovieID} />
+                }}
+              />
       </section>
     )
   }

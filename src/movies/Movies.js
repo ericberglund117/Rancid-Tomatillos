@@ -45,10 +45,7 @@ export default class Movies extends Component {
                 </section>
               </article>)
             })
-        //   }
-        //   {this.state.showComponent ?
-        //   <SingleMovie movieID={this.state.selectMovieId} /> : null
-        // }
+          }
         </section>
     )
   }
