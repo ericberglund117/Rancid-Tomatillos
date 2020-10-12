@@ -37,8 +37,6 @@ class App extends Component {
     }
     return (
       <section>
-      <BrowserRouter>
-        <Route>
           <header>
             <Link to='/'>
             <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
@@ -51,21 +49,9 @@ class App extends Component {
               type="button"
               onClick={event => this.submitLogout(event)}>Logout</button>
             <img className='flim-reel' src={Film}/>
-            <Login setUser={this.setUser} />
           </header>
-            <Switch>
+              <Route exact path='/' render= { () => <Movies /> } />
               <Route exact path='/signin' render={() => <Login setUser={this.setUser} /> } />
-              <Route path='/' Component = <Movies /> />
-              // <Route path='/' render={() => <Movies movies={this.state.movies} /> } />
-              // <Route path='/logout' render={() => <App />} />
-            </Switch>
-          {/* <section className='all-cards'>
-            <Movies movies={this.state.movies} />
-          </section> */
-          }
-          <Movies />
-          </Route>
-        </BrowserRouter>
       </section>
     )
   }

@@ -13,7 +13,6 @@ export default class SingleMovie extends Component {
   }
 
   fetchSingleMovieData(id) {
-    console.log('fuck')
     getSingleMovie(id)
     .then(data => this.setState({ singleMovie: data.movie }))
     .catch(error => this.setState({ error, isLoading: false}));

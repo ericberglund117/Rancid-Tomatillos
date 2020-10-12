@@ -36,7 +36,8 @@ export default class Movies extends Component {
                 alt='image-poster'
                 data-id={movie.id}
                 src={movie.poster_path}
-                onClick={this.getMovieID}></img>
+                onClick={this.getMovieID}>
+              </img>
                 <section className='poster-card-text'>
                   <h2 className='title-poster'>{movie.title}</h2>
                   <h3 className='rating-poster'>Average Rating: {movie.average_rating}</h3>
@@ -44,10 +45,10 @@ export default class Movies extends Component {
                 </section>
               </article>)
             })
-          }
-          {this.state.showComponent ?
-          <SingleMovie movieID={this.state.selectMovieId} /> : null
-        }
+        //   }
+        //   {this.state.showComponent ?
+        //   <SingleMovie movieID={this.state.selectMovieId} /> : null
+        // }
         </section>
     )
   }
