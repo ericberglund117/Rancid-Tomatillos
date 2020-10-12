@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
 import "./SingleMovie.css"
-import {Movies, getMovieID} from '../movies/Movies.js'
+import Movies from '../movies/Movies.js'
 import { getSingleMovie } from '../apiCalls'
 
 
 export default class SingleMovie extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
       singleMovie: {},
     };
   }
 
-  getTheMovieData() {
-    console.log(this)
-    getSingleMovie(this.props.id)
+  fetchSingleMovieData(id) {
+    console.log('fuck')
+    getSingleMovie(id)
     .then(data => this.setState({ singleMovie: data.movie }))
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.movieID !== prevProps.movieID) {
+      this.fetchSingleMovieData(this.props.movieID)
+    }
+  }
+
   render() {
-    this.getTheMofvieData()
     return (
       <section className="single-movie">
         <h2 className='title-poster-backdrop'>

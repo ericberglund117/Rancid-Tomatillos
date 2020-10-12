@@ -4,7 +4,7 @@ export const getAllMovies = () => {
   .then(response => response.json())
 };
 
-export const getSingleMovie = (idNumber) => {
-  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${idNumber}`)
+export const getSingleMovie = (movieID) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieID}`)
   .then(response => response.json())
 };
