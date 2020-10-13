@@ -4,6 +4,7 @@ import Film from './images/film-reel.png';
 import Tomatillos from './images/tomatillo.png';
 import Movies  from './movies/Movies.js';
 import Login from './login/Login.js';
+import Logout from './logout/Logout.js';
 import SingleMovie  from './single-movie/SingleMovie.js'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
@@ -45,13 +46,16 @@ class App extends Component {
               <Link to='/signin'>
               <button type="button">Login</button>
               </Link>
+            <Link to="/">
             <button
               type="button"
-              onClick={event => this.submitLogout(event)}>Logout</button>
+              onClick={event => this.submitLogout(event)}>Logout
+            </button>
+            </Link>
             <img className='flim-reel' src={Film}/>
           </header>
               <Route exact path='/' render={ () => <Movies /> } />
-              <Route exact path='/signin' render={() => <Login setUser={this.setUser} /> } />
+              <Route exact path='/signin' render={ () => <Login setUser={this.setUser} /> } />
               <Route
                 path="/movies/:movie_id"
                 exact
