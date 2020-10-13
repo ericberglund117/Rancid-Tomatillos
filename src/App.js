@@ -4,7 +4,6 @@ import Film from './images/film-reel.png';
 import Tomatillos from './images/tomatillo.png';
 import Movies  from './movies/Movies.js';
 import Login from './login/Login.js';
-import Logout from './logout/Logout.js';
 import SingleMovie  from './single-movie/SingleMovie.js'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
