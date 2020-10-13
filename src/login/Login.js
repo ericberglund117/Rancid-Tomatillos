@@ -47,13 +47,14 @@ class Login extends Component {
   render() {
     const { email, password, error } = this.state;
       return (
-        <form>
+        <form className="login-form" >
         {!error ? '' : <p>{error}</p>}
         <label htmlFor="email">
           Email
         </label>
           <input
             type="text"
+            className="email-input"
             placeholder="Email"
             name="email"
             value={this.state.email}
@@ -64,13 +65,18 @@ class Login extends Component {
           </label>
           <input
             type="password"
+            className="password-input"
             placeholder="Password"
             name="password"
             value={this.state.password}
             onChange={event => this.handleChange(event)}
           />
-
-          <button type="button" onClick={event => this.submitLogin(event)}>Submit</button>
+          <button
+            type="button"
+            className="login-submit"
+            onClick={event => this.submitLogin(event)}>
+            Submit
+          </button>
         </form>
       )
     //}
