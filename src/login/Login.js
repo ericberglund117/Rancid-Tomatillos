@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getUser } from '../apiCalls.js'
 import "./Login.css"
 
 class Login extends Component {
@@ -18,7 +19,8 @@ class Login extends Component {
 
   submitLogin = (event) => {
     const newLogin = this.state
-    this.getUser(newLogin)
+    console.log(newLogin.password)
+    this.fetchUser(newLogin)
     this.clearInputs();
   }
 
@@ -26,20 +28,8 @@ class Login extends Component {
     this.setState({email:'', password:''})
   }
 
-  getUser = (login) => {
-    fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login",
-    {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(login)
-    })
-    .then(response => {
-      if (response.ok) {
-        this.setState({error: ''})
-        return response.json()
-      }})
+  fetchUser = (login) => {
+    getUser(login)
     .then(data => this.props.setUser(data.user))
     .catch(error => this.setState({ error: 'Incorrect username or password' }));
   }
@@ -47,13 +37,14 @@ class Login extends Component {
   render() {
     const { email, password, error } = this.state;
       return (
-        <form>
+        <form className="login-form" title="login-form">
         {!error ? '' : <p>{error}</p>}
         <label htmlFor="email">
           Email
         </label>
           <input
             type="text"
+            className="email-input"
             placeholder="Email"
             name="email"
             value={this.state.email}
@@ -64,13 +55,18 @@ class Login extends Component {
           </label>
           <input
             type="password"
+            className="password-input"
             placeholder="Password"
             name="password"
             value={this.state.password}
             onChange={event => this.handleChange(event)}
           />
-
-          <button type="button" onClick={event => this.submitLogin(event)}>Submit</button>
+          <button
+            type="button"
+            className="login-submit"
+            onClick={event => this.submitLogin(event)}>
+            Submit
+          </button>
         </form>
       )
     //}

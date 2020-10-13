@@ -16,9 +16,7 @@ export default class Movies extends Component {
   }
 
   getMovieID(event) {
-    console.log('hi')
     let movie_id = event.currentTarget.dataset.id
-    console.log(movie_id)
     this.setState({ showComponent: true })
     this.setState({ selectMovieId: movie_id })
   };

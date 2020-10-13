@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, waitFor, screen } from '@testing-library/react'
 import Movies from './Movies';
-import '@testing-library/jest-dom';
+import { render, waitFor, screen, getByText,
+  getByAltText, getByTitle} from '@testing-library/react'
 import { getAllMovies } from '../apiCalls.js';
-jest.mock('../apiCalls.js');
-import Movies from './Movies.js';
 import '@testing-library/jest-dom'
+import { MemoryRouter } from 'react-router-dom'
 jest.mock('../apiCalls.js')
 //import {Router} from 'react-router-dom'
 
@@ -22,14 +21,17 @@ describe("Movies", () => {
          release_date: "2020-09-29"
        },
     ]})
-    //render component
-    const { getByTitle, getByText, getByAltText } = render(<Movies  />);
+    render(
+      <MemoryRouter>
+        <Movies  />
+      </MemoryRouter>
+    );
     // check that there is a container element on the page
-    const moviesContainer = getByTitle("movies-list");
-    const movieTitle = await waitFor(() => getByText('Money Plane'))
-    const movieDate = await waitFor(() => getByText('Release Date: 2020-09-29'))
-    const movieRating = await waitFor(() => getByText('Average Rating: 9'))
-    const moviePoster = await waitFor(() => getByAltText('image-poster'))
+    const moviesContainer = screen.getByTitle("movies-list");
+    const movieTitle = await waitFor(() => screen.getByText('Money Plane'))
+    const movieDate = await waitFor(() => screen.getByText('Release Date: 2020-09-29'))
+    const movieRating = await waitFor(() => screen.getByText('Average Rating: 9'))
+    const moviePoster = await waitFor(() => screen.getByAltText('image-poster'))
     // check that there are movies on the page
     expect(moviesContainer).toBeInTheDocument();
     expect(movieTitle).toBeInTheDocument();

@@ -35,7 +35,7 @@ export default class SingleMovie extends Component {
 
   render() {
     return (
-      <section className="single-movie">
+      <section className="single-movie" title="single-movie">
         <h2 className='title-poster-backdrop'>
           {this.state.singleMovie.title}
         </h2>
@@ -54,7 +54,7 @@ export default class SingleMovie extends Component {
           Overview: {this.state.singleMovie.overview}
         </h3>
         <h3 className='release-date-single'>
-          Average Rating: {this.state.singleMovie.release_date}
+          Release Date: {this.state.singleMovie.release_date}
         </h3>
         <h3 className='genres-single'>
           Genres: {this.state.singleMovie.genres}
