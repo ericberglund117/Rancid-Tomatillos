@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { getUser } from '../apiCalls.js'
 import "./Login.css"
 
 class Login extends Component {
@@ -18,7 +19,8 @@ class Login extends Component {
 
   submitLogin = (event) => {
     const newLogin = this.state
-    this.getUser(newLogin)
+    console.log(newLogin.password)
+    this.fetchUser(newLogin)
     this.clearInputs();
   }
 
@@ -26,20 +28,8 @@ class Login extends Component {
     this.setState({email:'', password:''})
   }
 
-  getUser = (login) => {
-    fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login",
-    {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(login)
-    })
-    .then(response => {
-      if (response.ok) {
-        this.setState({error: ''})
-        return response.json()
-      }})
+  fetchUser = (login) => {
+    getUser(login)
     .then(data => this.props.setUser(data.user))
     .catch(error => this.setState({ error: 'Incorrect username or password' }));
   }
