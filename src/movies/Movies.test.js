@@ -1,16 +1,13 @@
 import React from 'react';
-<<<<<<< HEAD
 import { render, waitFor, screen } from '@testing-library/react'
 import Movies from './Movies';
 import '@testing-library/jest-dom';
 import { getAllMovies } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
-=======
 import Movies from './Movies.js';
 import '@testing-library/jest-dom'
 jest.mock('../apiCalls.js')
 //import {Router} from 'react-router-dom'
->>>>>>> 219bc4914d19d3cde96ddb26fb2c6703fdcbe8f5
 
 
 describe("Movies", () => {

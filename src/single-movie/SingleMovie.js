@@ -8,21 +8,29 @@ export default class SingleMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      singleMovie: {},
+      singleMovie: {
+        title: '',
+        backdrop_path: '',
+        tagline: '',
+        average_rating: 0,
+        overview: '',
+        release_date: '',
+        genres: [],
+        budget: '',
+        revenue: 0,
+        runtime: ''
+      },
     };
   }
 
   fetchSingleMovieData(id) {
-    console.log('fuck')
     getSingleMovie(id)
     .then(data => this.setState({ singleMovie: data.movie }))
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.movieID !== prevProps.movieID) {
-      this.fetchSingleMovieData(this.props.movieID)
-    }
+  componentDidMount() {
+    this.fetchSingleMovieData(this.props.movieID)
   }
 
   render() {
