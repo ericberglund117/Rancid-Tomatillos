@@ -26,10 +26,10 @@ describe("Movies", () => {
     const { getByTitle, getByText, getByAltText } = render(<Movies  />);
     // check that there is a container element on the page
     const moviesContainer = getByTitle("movies-list");
-    const movieTitle = await waitFor(() => getByText('Money Plane'))
-    const movieDate = await waitFor(() => getByText('Release Date: 2020-09-29'))
-    const movieRating = await waitFor(() => getByText('Average Rating: 9'))
-    const moviePoster = await waitFor(() => getByAltText('image-poster'))
+    const movieTitle = await waitFor(() => screen.getByText('Money Plane'))
+    const movieDate = await waitFor(() => screen.getByText('Release Date: 2020-09-29'))
+    const movieRating = await waitFor(() => screen.getByText('Average Rating: 9'))
+    const moviePoster = await waitFor(() => screen.getByAltText('image-poster'))
     // check that there are movies on the page
     expect(moviesContainer).toBeInTheDocument();
     expect(movieTitle).toBeInTheDocument();
