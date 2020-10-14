@@ -5,6 +5,7 @@ import Tomatillos from './images/tomatillo.png';
 import Movies  from './movies/Movies.js';
 import Login from './login/Login.js';
 import SingleMovie  from './single-movie/SingleMovie.js'
+import UserRatings from './user-ratings/UserRatings.js'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 class App extends Component {
@@ -53,11 +54,10 @@ class App extends Component {
             </Link>
             <img className='flim-reel' src={Film}/>
           </header>
-              <Route exact path='/' render={ () => <Movies /> } />
+              <Route exact path='/' render={ () => !this.state.user === {} ? < UserRatings userId={this.state.user.id} /> :  < Movies /> } />
               <Route exact path='/signin' render={ () => <Login setUser={this.setUser} /> } />
               <Route
-                path="/movies/:movie_id"
-                exact
+                exact path="/movies/:movie_id"
                 render={({ match }) => {
                   const { movie_id } = match.params;
                   return <SingleMovie movieID={movie_id} />
