@@ -36,7 +36,9 @@ export const getMovieRatings = (userId, movieId, rating) => {
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(movieId, rating)
+      body: JSON.stringify({
+        movie_id: parseInt(movieId),
+        rating: parseInt(rating)})
     })
     .then(response => {
       if (response.ok) {

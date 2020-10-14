@@ -68,7 +68,7 @@ class App extends Component {
                 exact path="/movies/:movie_id"
                 render={({ match }) => {
                   const { movie_id } = match.params;
-                  return <SingleMovie movieID={movie_id} movieRatings={this.state.ratings} userStatus={this.state.user} />
+                  return <SingleMovie movieID={movie_id} movieRatings={this.state.ratings} userStatus={this.state.user} fetchUserRatings={this.fetchUserRatings}/>
                 }}
               />
       </section>
