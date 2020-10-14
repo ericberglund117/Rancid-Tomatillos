@@ -37,12 +37,12 @@ export default class Movies extends Component {
                   alt='image-poster'
                   data-id={movie.id}
                   src={movie.poster_path}
-                  // onClick={this.getMovieID}>
                 />
                 <section className='poster-card-text'>
                   <h2 className='title-poster'>{movie.title}</h2>
                   <h3 className='rating-poster'>Average Rating: {movie.average_rating}</h3>
                   <h3 className='release-date-poster'>Release Date: {movie.release_date}</h3>
+                                    
                 </section>
               </Link>)
             })

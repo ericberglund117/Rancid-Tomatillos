@@ -22,4 +22,9 @@ export const getUser = (login) => {
     if (response.ok) {
       return response.json()
   }})
-}
+};
+
+export const getUserRatings = (id) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`)
+  .then(response => response.json())
+};
