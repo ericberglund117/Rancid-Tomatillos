@@ -43,7 +43,7 @@ export default class Movies extends Component {
                   <h2 className='title-poster'>{movie.title}</h2>
                   <h3 className='rating-poster'>Average Rating: {movie.average_rating}</h3>
                   {this.props.userRatings ?
-                    <h3 className='user-rated-poster'>Your Rating: {this.props.userRatings}</h3> :
+                    <h3 className='user-rated-poster'>Your Rating: {this.props.movieRatings}</h3> :
                     <h3 className='user-rated-poster'>Not yet rated</h3>}
                   <h3 className='release-date-poster'>Release Date: {movie.release_date}</h3>
                 </section>
