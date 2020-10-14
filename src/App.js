@@ -54,7 +54,7 @@ class App extends Component {
             </Link>
             <img className='flim-reel' src={Film}/>
           </header>
-              <Route exact path='/' render={ () => <Movies /> } />
+              <Route exact path='/' render={ () => !this.state.user === {} ? < UserRatings userId={this.state.user.id} /> :  < Movies /> } />
               <Route exact path='/signin' render={ () => <Login setUser={this.setUser} /> } />
               <Route
                 exact path="/movies/:movie_id"

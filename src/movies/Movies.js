@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getAllMovies } from '../apiCalls'
 import "./Movies.css"
 import SingleMovie from "../single-movie/SingleMovie.js"
+import {} from "../user-ratings/UserRatings.js"
 import { Link } from 'react-router-dom';
 
 export default class Movies extends Component {
@@ -41,8 +42,10 @@ export default class Movies extends Component {
                 <section className='poster-card-text'>
                   <h2 className='title-poster'>{movie.title}</h2>
                   <h3 className='rating-poster'>Average Rating: {movie.average_rating}</h3>
+                  {this.props.userRatings ?
+                    <h3 className='user-rated-poster'>Your Rating: {this.props.userRatings}</h3> :
+                    <h3 className='user-rated-poster'>Not yet rated</h3>}
                   <h3 className='release-date-poster'>Release Date: {movie.release_date}</h3>
-                                    
                 </section>
               </Link>)
             })

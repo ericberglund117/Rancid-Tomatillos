@@ -15,8 +15,23 @@ export default class UserRatings extends Component {
 
   fetchUserRatings(id) {
     getUserRatings(id)
-    .then(data => this.setState({ ratings: data.ratings }))
+    .then(data => this.setState({ ratings: data }))
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
+  componentDidMount() {
+    console.log(this.state)
+    this.fetchUserRatings(78)
+    this.helper()
+  }
+
+  helper() {
+    console.log(this.state)
+  }
+
+  render(){
+    return (
+      <Movies userRatings={this.state.ratings}/>
+    )
+  }
 }
