@@ -44,7 +44,6 @@ export default class SingleMovie extends Component {
   }
 
   render() {
-
     return (
       <section className="single-movie" title="single-movie">
         <h2 className='title-poster-backdrop'>
