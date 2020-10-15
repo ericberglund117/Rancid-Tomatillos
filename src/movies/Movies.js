@@ -11,7 +11,6 @@ export default class Movies extends Component {
     this.state = {
       movies: [],
       showComponent: false,
-      selectMovieId: undefined
     };
     this.getMovieID = this.getMovieID.bind(this);
   }
@@ -28,17 +27,15 @@ export default class Movies extends Component {
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
-  displayMovieRating() {
+  displayMovieRating(movieId) {
     let ratings = this.props.movieRatings
-    let movies = this.state.movies
-     movies.find(movie => {
-        ratings.find(rating => {
-        if (movie.id === rating.movie_id) {
-          return rating
-        }
-        })
+     let userMovieRating = ratings.find(rating => {
+        return movieId === rating.movie_id
       })
-  }
+      return userMovieRating ?
+      <h3 className='user-rated-poster'>Your Rating: {userMovieRating.rating} </h3> :
+      <h3 className='user-rated-poster'>You Have Not Rated This Movie...Yet</h3>
+    }
 
 
   render() {
@@ -55,8 +52,7 @@ export default class Movies extends Component {
                 <section className='poster-card-text'>
                   <h2 className='title-poster'>{movie.title}</h2>
                   <h3 className='rating-poster'>Average Rating: {movie.average_rating}</h3>
-                  <h3 className='user-rated-poster'>Your Rating: {this.displayMovieRating()}</h3>
-                  <h3 className='user-rated-poster'>Not yet rated</h3>
+                  {this.displayMovieRating(movie.id)}
                   <h3 className='release-date-poster'>Release Date: {movie.release_date}</h3>
                 </section>
               </Link>)
