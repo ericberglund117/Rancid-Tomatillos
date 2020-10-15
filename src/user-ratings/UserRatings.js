@@ -23,9 +23,6 @@ export default class UserRatings extends Component {
   submitRating(event) {
     const { userStatus, movieID } = this.props
     const rating = this.state.selectedRating
-    console.log('movie', movieID)
-    console.log('rating', rating)
-    console.log('id', userStatus.id)
     this.fetchMovieRatingsData(userStatus.id, movieID, rating)
   }
 

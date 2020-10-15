@@ -65,7 +65,7 @@ class App extends Component {
             <img className='flim-reel' src={Film}/>
           </header>
               <Route exact path='/' render={ () => <Movies movieRatings={this.state.ratings} /> } />
-              <Route exact path='/signin' render={ () => <Login setUser={this.setUser} userRatings={this.fetchUserRatings} userId={this.state.user.id}/> } />
+              <Route exact path='/signin' render={ () => <Login setUser={this.setUser} userId={this.state.user.id}/> } />
               <Route
                 exact path="/movies/:movie_id"
                 render={({ match }) => {
