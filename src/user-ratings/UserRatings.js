@@ -24,6 +24,9 @@ export default class UserRatings extends Component {
     const { userStatus, movieID } = this.props
     const rating = this.state.selectedRating
     this.fetchMovieRatingsData(userStatus.id, movieID, rating)
+    alert('submitted rating')
+    //if single movie has rating, then display 'Please to delete current rating if you want to update your rating'
+    // else this.fetchMovieRatingsData
   }
 
   changeValue(event) {

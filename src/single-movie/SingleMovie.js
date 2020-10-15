@@ -69,7 +69,10 @@ export default class SingleMovie extends Component {
         </h3>
         <button type="button"
                 onClick={event => this.rateMovie(event)}>Rate This Movie!</button>
-        {this.state.toggle ? <UserRatings movieID={this.props.movieID} movieRatings={this.props.movieRatings} userStatus={this.props.userStatus} fetchUserRatings={this.props.fetchUserRatings}/> : <></> }
+        {this.state.toggle ? <UserRatings movieID={this.props.movieID}
+          movieRatings={this.props.movieRatings}
+          userStatus={this.props.userStatus}
+          fetchUserRatings={this.props.fetchUserRatings}/> : <></> }
         <h3 className='rating-poster-single'>
           Average Rating: {this.state.singleMovie.average_rating}
         </h3>
