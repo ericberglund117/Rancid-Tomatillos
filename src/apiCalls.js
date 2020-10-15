@@ -22,4 +22,27 @@ export const getUser = (login) => {
     if (response.ok) {
       return response.json()
   }})
+};
+
+export const getUserRatings = (id) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${id}/ratings`)
+  .then(response => response.json())
+};
+
+export const getMovieRatings = (userId, movieId, rating) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`,
+    {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        movie_id: parseInt(movieId),
+        rating: parseInt(rating)})
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json()
+    }})
+
 }

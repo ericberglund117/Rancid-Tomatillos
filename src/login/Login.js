@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getUser } from '../apiCalls.js'
 import "./Login.css"
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor() {
@@ -19,7 +20,6 @@ class Login extends Component {
 
   submitLogin = (event) => {
     const newLogin = this.state
-    console.log(newLogin.password)
     this.fetchUser(newLogin)
     this.clearInputs();
   }
@@ -61,15 +61,16 @@ class Login extends Component {
             value={this.state.password}
             onChange={event => this.handleChange(event)}
           />
-          <button
-            type="button"
-            className="login-submit"
-            onClick={event => this.submitLogin(event)}>
-            Submit
-          </button>
+          <Link to="/">
+            <button
+              type="button"
+              className="login-submit"
+              onClick={event => this.submitLogin(event)}>
+              Submit
+            </button>
+          </Link>
         </form>
       )
-    //}
   }
 }
 

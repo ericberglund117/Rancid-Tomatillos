@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getAllMovies } from '../apiCalls'
 import "./Movies.css"
 import SingleMovie from "../single-movie/SingleMovie.js"
+import {} from "../user-ratings/UserRatings.js"
 import { Link } from 'react-router-dom';
 
 export default class Movies extends Component {
@@ -10,7 +11,6 @@ export default class Movies extends Component {
     this.state = {
       movies: [],
       showComponent: false,
-      //selectMovieId: undefined
     };
     this.getMovieID = this.getMovieID.bind(this);
   }
@@ -27,6 +27,16 @@ export default class Movies extends Component {
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
+  displayMovieRating(movieId) {
+    let ratings = this.props.movieRatings
+     let userMovieRating = ratings.find(rating => {
+        return movieId === rating.movie_id
+      })
+      return userMovieRating ?
+      <h3 className='user-rated-poster'>Your Rating: {userMovieRating.rating} </h3> :
+      <h3 className='user-rated-poster'>You Have Not Rated This Movie...Yet</h3>
+    }
+
   render() {
     return (
         <section className="movies-list" title="movies-list">
@@ -37,11 +47,11 @@ export default class Movies extends Component {
                   alt='image-poster'
                   data-id={movie.id}
                   src={movie.poster_path}
-                  // onClick={this.getMovieID}>
                 />
                 <section className='poster-card-text'>
                   <h2 className='title-poster'>{movie.title}</h2>
                   <h3 className='rating-poster'>Average Rating: {movie.average_rating}</h3>
+                  {this.displayMovieRating(movie.id)}
                   <h3 className='release-date-poster'>Release Date: {movie.release_date}</h3>
                 </section>
               </Link>)

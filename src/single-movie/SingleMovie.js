@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import "./SingleMovie.css"
 import Movies from '../movies/Movies.js'
-import { getSingleMovie } from '../apiCalls'
+import { getSingleMovie, getMovieRatings } from '../apiCalls'
+import UserRatings from '../user-ratings/UserRatings.js'
 
 
 export default class SingleMovie extends Component {
@@ -20,6 +21,7 @@ export default class SingleMovie extends Component {
         revenue: 0,
         runtime: ''
       },
+      toggle: false
     };
   }
 
@@ -32,6 +34,24 @@ export default class SingleMovie extends Component {
   componentDidMount() {
     this.fetchSingleMovieData(this.props.movieID)
   }
+
+  rateMovie(event) {
+    if(Object.keys(this.props.userStatus).length > 0) {
+      this.setState({ toggle: true })
+    } else {
+      alert("You have to login in order to give your professional opinion about this movie")
+    }
+  }
+
+  displaySingleMovieRating(movieId) {
+    let ratings = this.props.movieRatings
+     let userMovieRating = ratings.find(rating => {
+        return parseInt(movieId) === rating.movie_id
+      })
+      return userMovieRating ?
+      <h3 className='rating-poster-single'>Your Rating: {userMovieRating.rating} </h3> :
+      <h3 className='rating-poster-single'>You Have Not Rated This Movie...Yet</h3>
+    }
 
   render() {
     return (
@@ -47,9 +67,16 @@ export default class SingleMovie extends Component {
         <h3 className='tagline-single'>
           {this.state.singleMovie.tagline}
         </h3>
+        <button type="button"
+                onClick={event => this.rateMovie(event)}>Rate This Movie!</button>
+        {this.state.toggle ? <UserRatings movieID={this.props.movieID}
+          movieRatings={this.props.movieRatings}
+          userStatus={this.props.userStatus}
+          fetchUserRatings={this.props.fetchUserRatings}/> : <></> }
         <h3 className='rating-poster-single'>
           Average Rating: {this.state.singleMovie.average_rating}
         </h3>
+          {this.displaySingleMovieRating(this.props.movieID)}
         <h3 className='overview'>
           Overview: {this.state.singleMovie.overview}
         </h3>
