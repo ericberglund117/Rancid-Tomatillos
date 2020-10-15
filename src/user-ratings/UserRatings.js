@@ -29,6 +29,8 @@ export default class UserRatings extends Component {
   changeValue(event) {
     this.setState({selectedRating: event.target.value})
   }
+
+
   // fetch request (need userID movieId and this.props.movieRatings--use this to set state once have a response. then invoke get request of updated ratings)
   //this.fetchMovieRatingsData(this.props.movieID, )
   // allow user to rate movie

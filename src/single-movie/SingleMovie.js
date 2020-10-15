@@ -43,6 +43,16 @@ export default class SingleMovie extends Component {
     }
   }
 
+  displaySingleMovieRating(movieId) {
+    let ratings = this.props.movieRatings
+     let userMovieRating = ratings.find(rating => {
+        return parseInt(movieId) === rating.movie_id
+      })
+      return userMovieRating ?
+      <h3 className='rating-poster-single'>Your Rating: {userMovieRating.rating} </h3> :
+      <h3 className='rating-poster-single'>You Have Not Rated This Movie...Yet</h3>
+    }
+
   render() {
     return (
       <section className="single-movie" title="single-movie">
@@ -63,9 +73,7 @@ export default class SingleMovie extends Component {
         <h3 className='rating-poster-single'>
           Average Rating: {this.state.singleMovie.average_rating}
         </h3>
-        <h3 className='rating-poster-single'>
-          Your Rating: {this.state.movieRatings}
-        </h3>
+          {this.displaySingleMovieRating(this.props.movieID)}
         <h3 className='overview'>
           Overview: {this.state.singleMovie.overview}
         </h3>

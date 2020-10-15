@@ -37,7 +37,6 @@ export default class Movies extends Component {
       <h3 className='user-rated-poster'>You Have Not Rated This Movie...Yet</h3>
     }
 
-
   render() {
     return (
         <section className="movies-list" title="movies-list">
