@@ -15,7 +15,6 @@ export default class UserRatings extends Component {
   }
 
   fetchMovieRatingsData(userId, movieId, ratings) {
-    console.log('hello')
     getMovieRatings(userId, movieId, ratings)
     .then(() => this.props.fetchUserRatings(userId))
     .catch(error => this.setState({error: error.message}))
@@ -34,16 +33,27 @@ export default class UserRatings extends Component {
   }
 
 
-  // fetch request (need userID movieId and this.props.movieRatings--use this to set state once have a response. then invoke get request of updated ratings)
-  //this.fetchMovieRatingsData(this.props.movieID, )
-  // allow user to rate movie
-    //post request
-    // reinvoke function instead of this.setState---another fetch request will naturally set ratings
-    // will return the updated state of movie ratings
-  //conditionally render depending on if they have already rated it.
-    // singleMovie - find
-    // movies - find but will be diff b/c have to iterate through all movies
+  //some sort of conditional rendering depending on if rating is available
+    //use this to display delete button 
 
+  //to delete a rating
+    // need to get rating id for delete request
+    //use /users/:user_id/ratings/:rating_id in endpoint
+      // need user id and rating id
+    // will get 204 status code (NO CONTENT in response body) as response
+    //fetch(‘https://rancid-tomatillos.herokuapp.com/api/v2/users/:user_id/ratings/:rating_id', {
+    // method: ‘DELETE’
+    // })
+    //find a way to get the rating id to pass into the endpoint
+    //on click of delete button
+    //iterate through this.props.movieRatings
+    // refactor function below and then the conditional render will change depending on movies, singlemovie, and delete
+      // let ratings = this.props.movieRatings
+       //let userMovieRating = ratings.find(rating => {
+        //  return parseInt(movieId) === rating.movie_id
+        //})
+        //return userMovieRating
+    // will need conditional if there is no rating
   render() {
     return (
       <form className="ratings-dropdown">
