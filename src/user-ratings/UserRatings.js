@@ -54,9 +54,18 @@ export default class UserRatings extends Component {
         //})
         //return userMovieRating
     // will need conditional if there is no rating
+
+  checkMovieRating(movieId) {
+    let ratings = this.props.movieRatings
+      let userMovieRating = ratings.find(rating => {
+        return parseInt(movieId) === rating.movie_id
+      })
+      return userMovieRating.id
+    }
+
   render() {
     return (
-      (1 == 2) 
+      {this.checkMovieRating(this.props.movieID)} 
       ?
         <form className="ratings-dropdown">
           <label htmlFor="ratings">Select a movie rating option(1-lowest, 10-highest)</label>
@@ -78,7 +87,7 @@ export default class UserRatings extends Component {
           <button type="button"
                   onClick={event => this.submitRating(event)}>Submit Rating</button>
         </form>
-        
+  
       :
       <section className='delete-rating'>
         <label className='delete-lable'>
