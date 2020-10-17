@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { getUser } from '../apiCalls.js'
 import "./Login.css"
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Login extends Component {
   constructor() {
@@ -72,6 +73,11 @@ class Login extends Component {
         </form>
       )
   }
+}
+
+Login.propTypes = {
+  setUser: PropTypes.func,
+  userId: PropTypes.number,
 }
 
 export default Login;

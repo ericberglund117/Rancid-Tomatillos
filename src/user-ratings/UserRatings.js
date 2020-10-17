@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "./UserRatings.css"
 import SingleMovie from '../single-movie/SingleMovie.js'
 import { getMovieRatings, deleteMovieRatings } from '../apiCalls.js'
+import PropTypes from 'prop-types';
+
 
 
 export default class UserRatings extends Component {
@@ -92,4 +94,11 @@ export default class UserRatings extends Component {
         )
       }
   }
+}
+
+UserRatings.propTypes = {
+  fetchUserRatings: PropTypes.func,
+  movieID: PropTypes.string,
+  userStatus: PropTypes.object,
+  movieRatings: PropTypes.arrayOf(PropTypes.object),
 }
