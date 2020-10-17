@@ -8,7 +8,7 @@ export default class UserRatings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedRating: null,
+      selectedRating: 1,
       error: '', 
       delete: false,
     }
@@ -31,7 +31,7 @@ export default class UserRatings extends Component {
     deleteMovieRatings(userID, movieID)
      .then(() => this.props.fetchUserRatings(userID))
      .then(() => this.setState({delete: true}))
-    // .catch(error => this.setState({error: error.message}))
+     .catch(error => this.setState({error: error.message}))
   }
 
   delteRating(event) {
