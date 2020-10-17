@@ -3,6 +3,7 @@ import "./SingleMovie.css"
 import Movies from '../movies/Movies.js'
 import { getSingleMovie, getMovieRatings } from '../apiCalls'
 import UserRatings from '../user-ratings/UserRatings.js'
+import  PropTypes  from 'prop-types';
 
 
 export default class SingleMovie extends Component {
@@ -98,4 +99,11 @@ export default class SingleMovie extends Component {
       </section>
     )
   }
+}
+
+SingleMovie.propTypes = {
+  fetchUserRatings: PropTypes.func,
+  movieID: PropTypes.string,
+  userStatus: PropTypes.object,
+  movieRatings: PropTypes.arrayOf(PropTypes.object),
 }

@@ -4,6 +4,8 @@ import "./Movies.css"
 import SingleMovie from "../single-movie/SingleMovie.js"
 import {} from "../user-ratings/UserRatings.js"
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 export default class Movies extends Component {
   constructor() {
@@ -12,14 +14,7 @@ export default class Movies extends Component {
       movies: [],
       showComponent: false,
     };
-    this.getMovieID = this.getMovieID.bind(this);
   }
-
-  getMovieID(event) {
-    let movie_id = event.currentTarget.dataset.id
-    this.setState({ showComponent: true })
-    this.setState({ selectMovieId: movie_id })
-  };
 
   componentDidMount () {
     getAllMovies()
@@ -61,3 +56,7 @@ export default class Movies extends Component {
     )
   }
 };
+
+Movies.propTypes = {
+  movieRatings: PropTypes.arrayOf(PropTypes.object),
+}

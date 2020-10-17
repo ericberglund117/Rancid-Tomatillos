@@ -39,4 +39,16 @@ describe("Movies", () => {
     expect(movieRating).toBeInTheDocument();
     expect(moviePoster).toBeInTheDocument();
     })
+
+    it('should get movie ID', () => {
+      let mockMovie = screen.{
+        average_rating: 3.8
+        backdrop_path: "https://image.tmdb.org/t/p/original//pq0JSpwyT2URytdFG0euztQPAyR.jpg"
+        id: 694919
+        poster_path: "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg"
+        release_date: "2020-09-29"
+        title: "Money Plane"
+        }
+      getMovieID()
+    }
 })
