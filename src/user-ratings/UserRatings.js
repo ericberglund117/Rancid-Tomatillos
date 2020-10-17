@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./UserRatings.css"
 import SingleMovie from '../single-movie/SingleMovie.js'
-import { getMovieRatings } from '../apiCalls.js'
+import { getMovieRatings, deleteMovieRatings } from '../apiCalls.js'
 
 
 export default class UserRatings extends Component {
@@ -9,7 +9,8 @@ export default class UserRatings extends Component {
     super(props);
     this.state = {
       selectedRating: null,
-      error: ''
+      error: '', 
+      delete: false,
     }
     this.changeValue = this.changeValue.bind(this);
   }
@@ -24,36 +25,24 @@ export default class UserRatings extends Component {
     const { userStatus, movieID } = this.props
     const rating = this.state.selectedRating
     this.fetchMovieRatingsData(userStatus.id, movieID, rating)
-    //if single movie has rating, then display 'Please to delete current rating if you want to update your rating'
-    // else this.fetchMovieRatingsData
+  }
+
+  fetchDeleteMovieRatings(userID, movieID) {
+    deleteMovieRatings(userID, movieID)
+     .then(() => this.props.fetchUserRatings(userID))
+     .then(() => this.setState({delete: true}))
+    // .catch(error => this.setState({error: error.message}))
+  }
+
+  delteRating(event) {
+    const { userStatus, movieID } = this.props
+    let userMovieRating = this.checkMovieRating(movieID);
+    this.fetchDeleteMovieRatings(userStatus.id, userMovieRating.id)
   }
 
   changeValue(event) {
     this.setState({selectedRating: event.target.value})
   }
-
-
-  //some sort of conditional rendering depending on if rating is available
-    //use this to display delete button 
-
-  //to delete a rating
-    // need to get rating id for delete request
-    //use /users/:user_id/ratings/:rating_id in endpoint
-      // need user id and rating id
-    // will get 204 status code (NO CONTENT in response body) as response
-    //fetch(‘https://rancid-tomatillos.herokuapp.com/api/v2/users/:user_id/ratings/:rating_id', {
-    // method: ‘DELETE’
-    // })
-    //find a way to get the rating id to pass into the endpoint
-    //on click of delete button
-    //iterate through this.props.movieRatings
-    // refactor function below and then the conditional render will change depending on movies, singlemovie, and delete
-      // let ratings = this.props.movieRatings
-       //let userMovieRating = ratings.find(rating => {
-        //  return parseInt(movieId) === rating.movie_id
-        //})
-        //return userMovieRating
-    // will need conditional if there is no rating
 
   checkMovieRating(movieId) {
     let ratings = this.props.movieRatings
@@ -64,7 +53,7 @@ export default class UserRatings extends Component {
     }
 
   render() {
-    if(this.checkMovieRating(this.props.movieID)){
+    if(this.checkMovieRating(this.props.movieID)) {
       return (
         <section className='delete-rating'>
           <label className='delete-lable'>
@@ -73,7 +62,7 @@ export default class UserRatings extends Component {
           <button 
             type="button"
             className='delete-button'
-            onClick={event => this.submitRating(event)}>
+            onClick={event => this.delteRating(event)}>
             Delete Rating
           </button>
         </section> 
