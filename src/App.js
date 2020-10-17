@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   fetchUserRatings = (id) => {
-    getUserRatings(id)
+     getUserRatings(id)
     .then(data => this.setState({ ratings: data.ratings }))
     .catch(error => this.setState({ error, isLoading: false}));
   }

@@ -46,3 +46,11 @@ export const getMovieRatings = (userId, movieId, rating) => {
     }})
 
 }
+
+export const deleteMovieRatings = (userId, ratingID) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings/${ratingID}`,
+    {
+      method: 'DELETE'
+    })
+    
+}
