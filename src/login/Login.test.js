@@ -57,4 +57,18 @@ describe("Login", () => {
     fireEvent.change(emailInput);
     fireEvent.change(passwordInput);
   })
-});
+
+  it('Should clear input fields after a user has logged in', () => {
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
+    emailInput.value = "";
+    passwordInput.value = "";
+    fireEvent.change(emailInput);
+    fireEvent.change(passwordInput);
+  })
+}); 
