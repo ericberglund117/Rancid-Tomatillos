@@ -11,14 +11,14 @@ jest.mock('../apiCalls.js')
 
 describe("Single Movie", () => {
   it('should render a single movie', async () => {
-    const ratings = {ratings: [{
+    const ratings = [{
       created_at: "2020-10-15T21:31:06.428Z",
       id: 2887,
       movie_id: 613504,
       rating: 4,
       updated_at: "2020-10-15T21:31:06.428Z",
       user_id: 80
-    }]}
+    }]
     getSingleMovie.mockResolvedValueOnce({ movie:
       {
         id: 694919,
@@ -65,4 +65,83 @@ describe("Single Movie", () => {
     expect(movieRuntime).toBeInTheDocument();
     expect(movieTagline).toBeInTheDocument();
     })
+
+    it('Should be able to see the rated movie', async () => {
+      
+      getSingleMovie.mockResolvedValueOnce({ movie:
+        {
+          id: 694919,
+          title: "Money Plane",
+          poster_path: "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg",
+          backdrop_path: "https://image.tmdb.org/t/p/original//pq0JSpwyT2URytdFG0euztQPAyR.jpg",
+          release_date: "2020-09-29",
+          overview: "A professional thief with $40 million in debt.",
+          genres: ["Action"],
+          budget: 0,
+          revenue: 0,
+          runtime: 82,
+          tagline: "They're grrreat",
+          average_rating: 9
+         },
+       })
+
+      const ratings = [{
+        created_at: "2020-10-15T21:31:06.428Z",
+        id: 2887,
+        movie_id: 613504,
+        rating: 4,
+        updated_at: "2020-10-15T21:31:06.428Z",
+        user_id: 80
+      }]
+      const movieID="613504";
+
+      render(
+        <MemoryRouter>
+          <SingleMovie  movieRatings={ratings} movieID={movieID}/>
+        </MemoryRouter>
+      )
+      expect(screen.getByText("Your Rating: 4")).toBeInTheDocument();
+      // rateMovie()
+    })
+
+
+    it('Should show "You Have Not Rated This Movie...Yet" if the movie is not rated', async () => {
+      
+      getSingleMovie.mockResolvedValueOnce({ movie:
+        {
+          id: 694919,
+          title: "Money Plane",
+          poster_path: "https://image.tmdb.org/t/p/original//6CoRTJTmijhBLJTUNoVSUNxZMEI.jpg",
+          backdrop_path: "https://image.tmdb.org/t/p/original//pq0JSpwyT2URytdFG0euztQPAyR.jpg",
+          release_date: "2020-09-29",
+          overview: "A professional thief with $40 million in debt.",
+          genres: ["Action"],
+          budget: 0,
+          revenue: 0,
+          runtime: 82,
+          tagline: "They're grrreat",
+          average_rating: 9
+         },
+       })
+
+      const ratings = [{
+        created_at: "2020-10-15T21:31:06.428Z",
+        id: 2887,
+        movie_id: 613504,
+        rating: 4,
+        updated_at: "2020-10-15T21:31:06.428Z",
+        user_id: 80
+      }]
+      const movieID="8675309";
+
+      render(
+        <MemoryRouter>
+          <SingleMovie  movieRatings={ratings} movieID={movieID}/>
+        </MemoryRouter>
+      )
+      expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();
+      // rateMovie()
+    })
 })
+
+
