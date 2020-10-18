@@ -36,7 +36,7 @@ export default class UserRatings extends Component {
      .catch(error => this.setState({error: error.message}))
   }
 
-  delteRating(event) {
+  deleteRating(event) {
     const { userStatus, movieID } = this.props
     let userMovieRating = this.checkMovieRating(movieID);
     this.fetchDeleteMovieRatings(userStatus.id, userMovieRating.id)
@@ -59,12 +59,12 @@ export default class UserRatings extends Component {
       return (
         <section className='delete-rating'>
           <label className='delete-lable'>
-            Already rated
+            Already Rated
           </label>
           <button 
             type="button"
             className='delete-button'
-            onClick={event => this.delteRating(event)}>
+            onClick={event => this.deleteRating(event)}>
             Delete Rating
           </button>
         </section> 
