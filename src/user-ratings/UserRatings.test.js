@@ -5,6 +5,7 @@ import { render, waitFor, screen, getByText,
 import '@testing-library/jest-dom'
 import { MemoryRouter } from 'react-router-dom'
 import UserRatings from './UserRatings.js';
+import { deleteMovieRatings } from '../apiCalls.js'
 jest.mock('../apiCalls.js')
 
 
@@ -73,5 +74,28 @@ describe("User Rating A Movie", () => {
 
     ratingInput.value = ratingInputValue
     fireEvent.change(ratingInput);
+  })
+
+  it('A user should be able to delete a rating', async () => {
+    deleteMovieRatings.mockResolvedValueOnce()
+    const ratings = [{
+      created_at: "2020-10-15T21:31:06.428Z",
+      id: 2887,
+      movie_id: 613504,
+      rating: 4,
+      updated_at: "2020-10-15T21:31:06.428Z",
+      user_id: 80
+    }]
+    const movieID="613504";
+    const userId = { id: 80 }
+
+    render(
+      <MemoryRouter>
+        <UserRatings  movieRatings={ratings} movieID={movieID} userStatus={userId}/>
+      </MemoryRouter>
+    );
+
+    expect(screen.getByRole('button', { name:'Delete Rating' })).toBeInTheDocument()
+    fireEvent.click(screen.getByRole('button', { name:'Delete Rating' }))
   })
 })
