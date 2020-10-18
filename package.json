@@ -34,7 +34,9 @@
     "@testing-library/dom": "^7.26.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
-    "@testing-library/user-event": "^7.2.1",
+    "@testing-library/user-event": "github:testing-library/user-event",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "jest-environment-jsdom-sixteen": "^1.0.3"
   }
 }

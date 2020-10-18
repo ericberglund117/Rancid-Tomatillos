@@ -54,14 +54,27 @@ describe("Movies", () => {
     expect(moviePoster).toBeInTheDocument();
     })
 
-  // it('should get movie ID', () => {
-  //   const route = 'movies/694919'
-  //   renderWithRouter(<Movies />, { route })
-  //     expect(screen.getByText('/')).toBeInTheDocument()
-  //
-  //   const leftClick = { button: 0}
-  //   userEvent.click(screen.getByText(route), leftClick)
-  //
-  //   expect(screen.getByText(route)).toBeInTheDocument()
-  // })
+    it('Should display a movies rating', () => {
+      const mockDisplayMovie = jest.fn();
+      // const displayMovieRating = jest.fn()
+      // const userRatedJSX = <h3 className='user-rated-poster'>Your Rating: {userMovieRating.rating} </h3> 
+      // const notUserRatedJSX = <h3 className='user-rated-poster'>You Have Not Rated This Movie...Yet</h3>
+      // const ratings = [{
+      //   created_at: "2020-10-15T21:31:06.428Z",
+      //   id: 2887,
+      //   movie_id: 613504,
+      //   rating: 4,
+      //   updated_at: "2020-10-15T21:31:06.428Z",
+      //   user_id: 80
+      //  }];
+
+      //  getAllMovies.mockResolvedValueOnce(expectedReturn)
+      //   render(
+      //     <MemoryRouter>
+      //       <Movies movieRatings={ratings}/>
+      //     </MemoryRouter>
+      //   );
+
+
+    })
 })
