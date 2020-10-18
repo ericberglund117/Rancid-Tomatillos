@@ -64,11 +64,21 @@ describe("Login", () => {
         <Login />
       </MemoryRouter>
     );
+    const loginSubmitButton = screen.getByRole('button');
+    getUser.mockResolvedValueOnce( { 
+      email: "ken@turing.io",
+      id: 80,
+      name: "Ken"
+    })
+    fireEvent.click(screen.getByRole('button'), { name:'Submit' })
+    expect(loginSubmitButton).toBeInTheDocument();
+    expect(getUser).toHaveBeenCalled();
     const emailInput = screen.getByPlaceholderText('Email');
     const passwordInput = screen.getByPlaceholderText('Password');
     emailInput.value = "";
     passwordInput.value = "";
     fireEvent.change(emailInput);
     fireEvent.change(passwordInput);
+    
   })
 }); 
