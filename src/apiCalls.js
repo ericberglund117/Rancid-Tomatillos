@@ -52,5 +52,4 @@ export const deleteMovieRatings = (userId, ratingID) => {
     {
       method: 'DELETE'
     })
-    
 }

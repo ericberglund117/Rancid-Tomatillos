@@ -64,6 +64,7 @@ class Login extends Component {
           />
           <Link to="/">
             <button
+              role="button"
               type="button"
               className="login-submit"
               onClick={event => this.submitLogin(event)}>

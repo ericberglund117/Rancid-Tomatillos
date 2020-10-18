@@ -11,6 +11,14 @@ jest.mock('../apiCalls.js')
 
 describe("Single Movie", () => {
   it('should render a single movie', async () => {
+    const ratings = {ratings: [{
+      created_at: "2020-10-15T21:31:06.428Z",
+      id: 2887,
+      movie_id: 613504,
+      rating: 4,
+      updated_at: "2020-10-15T21:31:06.428Z",
+      user_id: 80
+    }]}
     getSingleMovie.mockResolvedValueOnce({ movie:
       {
         id: 694919,
@@ -29,7 +37,7 @@ describe("Single Movie", () => {
      })
     render(
       <MemoryRouter>
-        <SingleMovie  />
+        <SingleMovie  movieRatings={ratings}/>
       </MemoryRouter>
     );
     // check that there is a container element on the page
