@@ -1,8 +1,6 @@
 import React from 'react';
-import Movies from '../movies/Movies.js';
 import SingleMovie from './SingleMovie'
-import { render, waitFor, screen, getByText,
-  getByAltText, getByTitle} from '@testing-library/react'
+import { render, waitFor, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { MemoryRouter } from 'react-router-dom'
 import  { getSingleMovie }  from '../apiCalls.js'
@@ -101,7 +99,6 @@ describe("Single Movie", () => {
         </MemoryRouter>
       )
       expect(screen.getByText("Your Rating: 4")).toBeInTheDocument();
-      // rateMovie()
     })
 
 
@@ -160,7 +157,7 @@ describe("Single Movie", () => {
           average_rating: 9
          },
        });
-       
+
       const userStatus = {};
       const movieID="8675309";
       const ratings = [{
