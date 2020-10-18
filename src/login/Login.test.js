@@ -44,5 +44,17 @@ describe("Login", () => {
     expect(getUser).toHaveBeenCalled();
   });
 
-  it('')
+  it('should change input fields when the user is logging in', () => {
+    render(
+      <MemoryRouter>
+        <Login  />
+      </MemoryRouter>
+    );
+    const emailInput = screen.getByPlaceholderText('Email');
+    const passwordInput = screen.getByPlaceholderText('Password');
+    emailInput.value = "RedSweater1";
+    passwordInput.value = "KenBone#1";
+    fireEvent.change(emailInput);
+    fireEvent.change(passwordInput);
+  })
 });
