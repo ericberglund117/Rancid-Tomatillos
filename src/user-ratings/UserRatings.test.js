@@ -1,7 +1,7 @@
 import React from 'react';
 import Movies from '../movies/Movies.js';
 import { render, waitFor, screen, getByText,
-  getByAltText, getByTitle} from '@testing-library/react'
+  getByAltText, getByTitle, fireEvent} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import { MemoryRouter } from 'react-router-dom'
 import UserRatings from './UserRatings.js';
@@ -49,4 +49,29 @@ describe("User Rating A Movie", () => {
     expect(screen.getByRole('button', { name:'Submit Rating' })).toBeInTheDocument();
   })
 
-  
+  it('Should change the input rating value', () => {
+    const ratings = [{
+      created_at: "2020-10-15T21:31:06.428Z",
+      id: 2887,
+      movie_id: 613504,
+      rating: 4,
+      updated_at: "2020-10-15T21:31:06.428Z",
+      user_id: 80
+    }]
+    const movieID="61350";
+
+    render(
+      <MemoryRouter>
+        <UserRatings  movieRatings={ratings} movieID={movieID}/>
+      </MemoryRouter>
+    );
+    const ratingInputValue = 3
+    const ratingInput = screen.getByText('Select a movie rating option(1-lowest, 10-highest)');
+
+    expect(ratingInput).toBeInTheDocument();
+    expect(screen.getByRole('button', { name:'Submit Rating' })).toBeInTheDocument();
+
+    ratingInput.value = ratingInputValue
+    fireEvent.change(ratingInput);
+  })
+})
