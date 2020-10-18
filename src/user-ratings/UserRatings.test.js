@@ -1,6 +1,5 @@
 import React from 'react';
 import Movies from '../movies/Movies.js';
-import SingleMovie from '../single-movie/SingleMovie.js'
 import { render, waitFor, screen, getByText,
   getByAltText, getByTitle} from '@testing-library/react'
 import '@testing-library/jest-dom'
@@ -27,9 +26,27 @@ describe("User Rating A Movie", () => {
       </MemoryRouter>
     )
     expect(screen.getByText('Already Rated')).toBeInTheDocument();
-    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name:'Delete Rating' })).toBeInTheDocument();
   })
-})
 
+  it('Should render the rating options if the user has not rated the movie', () => {
+    const ratings = [{
+      created_at: "2020-10-15T21:31:06.428Z",
+      id: 2887,
+      movie_id: 613504,
+      rating: 4,
+      updated_at: "2020-10-15T21:31:06.428Z",
+      user_id: 80
+    }]
+    const movieID="61350";
 
+    render(
+      <MemoryRouter>
+        <UserRatings  movieRatings={ratings} movieID={movieID}/>
+      </MemoryRouter>
+    )
+    expect(screen.getByText('Select a movie rating option(1-lowest, 10-highest)')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name:'Submit Rating' })).toBeInTheDocument();
+  })
 
+  
