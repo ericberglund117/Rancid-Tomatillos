@@ -1,12 +1,10 @@
 import React from 'react';
 import Movies from './Movies';
 import { MemoryRouter } from 'react-router-dom'
-import { render, waitFor, screen, getByText, getByAltText, getByTitle} from '@testing-library/react'
+import { render, waitFor, screen} from '@testing-library/react'
 import { getAllMovies } from '../apiCalls';
 import '@testing-library/jest-dom'
 jest.mock('../apiCalls.js')
-import userEvent from '@testing-library/user-event'
-import renderWithRouter from '../Test-utils.js'
 
 //import {Router} from 'react-router-dom'
 
@@ -52,29 +50,5 @@ describe("Movies", () => {
     expect(movieDate).toBeInTheDocument();
     expect(movieRating).toBeInTheDocument();
     expect(moviePoster).toBeInTheDocument();
-    })
-
-    it('Should display a movies rating', () => {
-      const mockDisplayMovie = jest.fn();
-      // const displayMovieRating = jest.fn()
-      // const userRatedJSX = <h3 className='user-rated-poster'>Your Rating: {userMovieRating.rating} </h3> 
-      // const notUserRatedJSX = <h3 className='user-rated-poster'>You Have Not Rated This Movie...Yet</h3>
-      // const ratings = [{
-      //   created_at: "2020-10-15T21:31:06.428Z",
-      //   id: 2887,
-      //   movie_id: 613504,
-      //   rating: 4,
-      //   updated_at: "2020-10-15T21:31:06.428Z",
-      //   user_id: 80
-      //  }];
-
-      //  getAllMovies.mockResolvedValueOnce(expectedReturn)
-      //   render(
-      //     <MemoryRouter>
-      //       <Movies movieRatings={ratings}/>
-      //     </MemoryRouter>
-      //   );
-
-
     })
 })

@@ -5,7 +5,6 @@ import '@testing-library/jest-dom'
 import Login from './Login'
 import { MemoryRouter } from 'react-router-dom'
 import {getUser} from '../apiCalls'
-import { shallow } from 'enzyme';
 // import { userEvent } from '@testing-library/user-event'
 jest.mock('../apiCalls.js')
 
@@ -34,7 +33,7 @@ describe("Login", () => {
       </MemoryRouter>
     );
     const loginSubmitButton = screen.getByRole('button');
-    getUser.mockResolvedValueOnce( { 
+    getUser.mockResolvedValueOnce( {
       email: "ken@turing.io",
       id: 80,
       name: "Ken"
@@ -65,7 +64,7 @@ describe("Login", () => {
       </MemoryRouter>
     );
     const loginSubmitButton = screen.getByRole('button');
-    getUser.mockResolvedValueOnce( { 
+    getUser.mockResolvedValueOnce( {
       email: "ken@turing.io",
       id: 80,
       name: "Ken"
@@ -79,6 +78,5 @@ describe("Login", () => {
     passwordInput.value = "";
     fireEvent.change(emailInput);
     fireEvent.change(passwordInput);
-    
   })
-}); 
+});
