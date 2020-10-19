@@ -42,30 +42,26 @@ describe.only("Single Movie", () => {
     );
     // check that there is a container element on the page
     const moviesContainer = screen.getByTitle("single-movie");
-    const movieTitle = await waitFor(() => screen.getByText('Money Plane'))
     const moviePoster = await waitFor(() => screen.getByAltText('image-poster-backdrop'))
-    const movieDate = await waitFor(() => screen.getByText('Release Date: 2020-09-29'))
-    const movieRating = await waitFor(() => screen.getByText('Average Rating: 9'))
-    const movieOverview = await waitFor(() => screen.getByText('Overview: A professional thief with $40 million in debt.'))
-    const movieGenres = await waitFor(() => screen.getByText('Genres: Action'))
-    const movieBudget = await waitFor(() => screen.getByText('Budget: 0'))
-    const movieRevenue = await waitFor(() => screen.getByText('Revenue: 0'))
-    const movieRuntime = await waitFor(() => screen.getByText('Runtime: 82'))
-    const movieTagline = await waitFor(() => screen.getByText('They\'re grrreat'))
-    // check that there are movies on the page
     expect(moviesContainer).toBeInTheDocument();
-    expect(movieTitle).toBeInTheDocument();
     expect(moviePoster).toBeInTheDocument();
-    expect(movieDate).toBeInTheDocument();
-    expect(movieRating).toBeInTheDocument();
-    expect(movieOverview).toBeInTheDocument();
-    expect(movieGenres).toBeInTheDocument();
-    expect(movieBudget).toBeInTheDocument();
-    expect(movieRevenue).toBeInTheDocument();
-    expect(movieRuntime).toBeInTheDocument();
-    expect(movieTagline).toBeInTheDocument();
-    })
-
+    const movieValues = [
+      'Money Plane', 
+      'Release Date: 2020-09-29', 
+      'Average Rating: 9',
+      'Overview: A professional thief with $40 million in debt.', 
+      'Genres: Action', 
+      'Budget: 0', 
+      'Revenue: 0', 
+      'Runtime: 82', 
+      'They\'re grrreat'
+    ]
+    
+    for (let i = 0; i < movieValues.length; i++) {
+      const movieTitle = await waitFor(() => screen.getByText(movieValues[i])) 
+      expect(movieTitle).toBeInTheDocument();
+    }
+  })
 
     it('Should be able to see the rated movie', async () => {
 
