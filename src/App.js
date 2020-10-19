@@ -21,6 +21,7 @@ class App extends Component {
   }
 
   setUser = (newUser) => {
+    console.log('set')
     this.setState({user: newUser})
     this.fetchUserRatings(this.state.user.id)
   }
@@ -46,6 +47,7 @@ class App extends Component {
     if (isLoading) {
       return <p>Loading...</p>;
     }
+    console.log(this.state)
     return (
       <section>
           <header title='header'>

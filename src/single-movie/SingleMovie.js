@@ -75,7 +75,7 @@ export default class SingleMovie extends Component {
           userStatus={this.props.userStatus}
           fetchUserRatings={this.props.fetchUserRatings}/> : <></> }
         <h3 className='rating-poster-single'>
-          Average Rating: {this.state.singleMovie.average_rating}
+          Average Rating: {Math.round(this.state.singleMovie.average_rating)}
         </h3>
           {this.displaySingleMovieRating(this.props.movieID)}
         <h3 className='overview'>

@@ -20,7 +20,10 @@ class Login extends Component {
   }
 
   submitLogin = (event) => {
-    const newLogin = this.state
+    const newLogin = {
+      email: this.state.email,
+      password: this.state.password
+    }
     this.fetchUser(newLogin)
     this.clearInputs();
   }
