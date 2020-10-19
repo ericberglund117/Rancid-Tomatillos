@@ -48,7 +48,7 @@ class App extends Component {
     }
     return (
       <section>
-          <header>
+          <header title='header'>
             <Link to='/'>
             <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
             </Link>
@@ -64,6 +64,7 @@ class App extends Component {
             </Link>
             <img className='flim-reel' src={Film}/>
           </header>
+          <div role='wrapper'>
               <Route exact path='/' render={ () => <Movies movieRatings={this.state.ratings} /> } />
               <Route exact path='/signin' render={ () => <Login setUser={this.setUser} userId={this.state.user.id}/> } />
               <Route
@@ -71,8 +72,8 @@ class App extends Component {
                 render={({ match }) => {
                   const { movie_id } = match.params;
                   return <SingleMovie movieID={movie_id} movieRatings={this.state.ratings} userStatus={this.state.user} fetchUserRatings={this.fetchUserRatings}/>
-                }}
-              />
+                }} />
+          </div>
       </section>
     )
   }
