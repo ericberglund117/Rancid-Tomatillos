@@ -54,24 +54,22 @@ class App extends Component {
             <section className= "logo-section">
               <img className='logo' src={Tomatillos}/>
               <h1 className='home'>Rancid <br></br>Tomatillos</h1>
-              <Link to='/signin' className='login-button'>
-              <button 
-              type="button" 
-              className='log-button'
-              >
-                Login
-              </button>
-              </Link>
-            <Link to="/" className='logout-button'>
+            </section>
+            </Link>
+            <Link to='/signin' className='login-button'>
             <button
-              type="button"  
-              className='log-button'            
-              onClick={event => this.submitLogout(event)}
-            >
-              Logout
+            type="button"
+            className='log-button'>
+              Login
             </button>
             </Link>
-            </section>
+            <Link to="/" className='logout-button'>
+            <button
+              type="button"
+              className='log-button'
+              onClick={event => this.submitLogout(event)}>
+              Logout
+            </button>
             </Link>
             <h2 className='welcome-text'> Welcome {this.state.user.name || 'Movie Goer'}!</h2>
             <img className='flim-reel' src={Film}/>
