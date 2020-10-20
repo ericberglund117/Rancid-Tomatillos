@@ -37,8 +37,8 @@ export default class UserRatings extends Component {
   }
 
   deleteRating(event) {
-    const { userStatus, movieID, checkMovieRating} = this.props
-    let userMovieRating = checkMovieRating(movieID);
+    const { userStatus, movieID } = this.props
+    let userMovieRating = this.checkMovieRating(movieID);
     this.fetchDeleteMovieRatings(userStatus.id, userMovieRating.id)
   }
 
@@ -46,9 +46,16 @@ export default class UserRatings extends Component {
     this.setState({selectedRating: event.target.value})
   }
 
+  checkMovieRating(movieId) {
+    let ratings = this.props.movieRatings
+      let userMovieRating = ratings.find(rating => {
+        return parseInt(movieId) === rating.movie_id
+      })
+      return userMovieRating
+    }
+
   render() {
-    console.log(this.props.checkMovieRating)
-    if(this.props.checkMovieRating(this.props.movieID)) {
+    if(this.checkMovieRating(this.props.movieID)) {
       return (
         <section className='delete-rating'>
           <label className='delete-lable'>
@@ -93,6 +100,5 @@ UserRatings.propTypes = {
   fetchUserRatings: PropTypes.func,
   movieID: PropTypes.string,
   userStatus: PropTypes.object,
-  movieRatings: PropTypes.arrayOf(PropTypes.object),
-  checkMovieRating: PropTypes.func
+  movieRatings: PropTypes.arrayOf(PropTypes.object)
 }

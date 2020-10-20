@@ -27,7 +27,6 @@ export default class SingleMovie extends Component {
   }
 
   fetchSingleMovieData(id) {
-    console.log(id)
     getSingleMovie(id)
     .then(data => this.setState({ singleMovie: data.movie }))
     .catch(error => this.setState({ error, isLoading: false}));
@@ -46,19 +45,20 @@ export default class SingleMovie extends Component {
   }
 
   displaySingleMovieRating(movieId) {
-    let userRating = this.props.checkMovieRating(movieId)
-    console.log(userRating)
-    return userRating ?
-      <h3 className='rating-poster-single'>Your Rating: {userRating.rating} </h3> :
+    let ratings = this.props.movieRatings
+     let userMovieRating = ratings.find(rating => {
+        return parseInt(movieId) === rating.movie_id
+      })
+      return userMovieRating ?
+      <h3 className='rating-poster-single'>Your Rating: {userMovieRating.rating} </h3> :
       <h3 className='rating-poster-single'>You Have Not Rated This Movie...Yet</h3>
-    }
+  }
 
   renderUserRatingsComponent() {
     return this.state.toggle ? <UserRatings movieID={this.props.movieID}
     movieRatings={this.props.movieRatings}
     userStatus={this.props.userStatus}
-    fetchUserRatings={this.props.fetchUserRatings}
-    checkMovieRating={this.props.checkMovieRating} /> : <></>
+    fetchUserRatings={this.props.fetchUserRatings} /> : <></>
   }
 
   render() {
@@ -109,6 +109,5 @@ SingleMovie.propTypes = {
   fetchUserRatings: PropTypes.func,
   movieID: PropTypes.string,
   userStatus: PropTypes.object,
-  movieRatings: PropTypes.arrayOf(PropTypes.object),
-  checkMovieRating: PropTypes.func
+  movieRatings: PropTypes.arrayOf(PropTypes.object)
 }

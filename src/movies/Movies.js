@@ -23,9 +23,12 @@ export default class Movies extends Component {
   }
 
   displayMovieRating(movieId) {
-    let userRating = this.props.checkMovieRating(movieId)
-    return userRating ?
-      <h3 className='user-rated-poster'>Your Rating: {userRating.rating} </h3> :
+    let ratings = this.props.movieRatings
+     let userMovieRating = ratings.find(rating => {
+        return parseInt(movieId) === rating.movie_id
+      })
+      return userMovieRating ?
+      <h3 className='user-rated-poster'>Your Rating: {userMovieRating.rating} </h3> :
       <h3 className='user-rated-poster'>You Have Not Rated This Movie...Yet</h3>
     }
 
@@ -59,5 +62,4 @@ export default class Movies extends Component {
 
 Movies.propTypes = {
   movieRatings: PropTypes.arrayOf(PropTypes.object),
-  checkMovieRating: PropTypes.func
 }

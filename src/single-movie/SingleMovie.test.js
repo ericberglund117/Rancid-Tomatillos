@@ -32,14 +32,13 @@ getSingleMovie.mockResolvedValue({ movie:
    },
  })
 
- const mockCheckMovieRating = jest.fn()
 
 describe.only("Single Movie", () => {
   it('should render a single movie', async () => {
 
     render(
       <MemoryRouter>
-        <SingleMovie  movieRatings={ratings} checkMovieRating={mockCheckMovieRating}/>
+        <SingleMovie  movieRatings={ratings} />
       </MemoryRouter>
     );
     // check that there is a container element on the page
@@ -75,11 +74,11 @@ describe.only("Single Movie", () => {
 
       render(
         <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={user} checkMovieRating={mockCheckMovieRating}/>
+          <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={user} />
         </MemoryRouter>
       )
 
-      expect(screen.getByText("Your Rating: 4")).toBeInTheDocument();
+      expect(await waitFor(() => screen.getByText("Your Rating: 4"))).toBeInTheDocument();
     })
 
 
@@ -89,7 +88,7 @@ describe.only("Single Movie", () => {
 
       render(
         <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID} checkMovieRating={mockCheckMovieRating}/>
+          <SingleMovie  movieRatings={ratings} movieID={movieID} />
         </MemoryRouter>
       )
       expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();
@@ -102,7 +101,7 @@ describe.only("Single Movie", () => {
 
       render(
         <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={userStatus} checkMovieRating={mockCheckMovieRating}/>
+          <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={userStatus} />
         </MemoryRouter>
       )
       expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();

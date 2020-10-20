@@ -37,13 +37,6 @@ class App extends Component {
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
-  checkMovieRating = (movieId) => {
-    let ratings = this.state.ratings
-     let userMovieRating = ratings.find(rating => {
-        return parseInt(movieId) === rating.movie_id
-      })
-      return userMovieRating
-    }
 
   render() {
     const { movies, isLoading, error } = this.state;
@@ -84,8 +77,7 @@ class App extends Component {
                   return <SingleMovie movieID={movie_id}
                   movieRatings={this.state.ratings}
                   userStatus={this.state.user}
-                  fetchUserRatings={this.fetchUserRatings}
-                  checkMovieRating={this.checkMovieRating} />
+                  fetchUserRatings={this.fetchUserRatings} />
                 }} />
           </div>
       </section>
