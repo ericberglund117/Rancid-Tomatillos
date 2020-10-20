@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./SingleMovie.css"
-import Movies from '../movies/Movies.js'
-import { getSingleMovie, getMovieRatings } from '../apiCalls'
+import { getSingleMovie } from '../apiCalls'
 import UserRatings from '../user-ratings/UserRatings.js'
 import  PropTypes  from 'prop-types';
 

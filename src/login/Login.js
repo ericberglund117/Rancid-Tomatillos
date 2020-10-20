@@ -43,7 +43,7 @@ class Login extends Component {
   }
 
   render() {
-    const { email, password, error } = this.state;
+    const { email, password } = this.state;
       return (
         <form className="login-form" title="login-form">
         { this.errorHandling() }
@@ -55,7 +55,7 @@ class Login extends Component {
             className="email-input"
             placeholder="Email"
             name="email"
-            value={this.state.email}
+            value={email}
             onChange={event => this.handleChange(event)}
           />
           <label htmlFor="password">
@@ -66,12 +66,11 @@ class Login extends Component {
             className="password-input"
             placeholder="Password"
             name="password"
-            value={this.state.password}
+            value={password}
             onChange={event => this.handleChange(event)}
           />
           <Link to="/">
             <button
-              role="button"
               type="button"
               className="login-submit"
               onClick={event => this.submitLogin(event)}>

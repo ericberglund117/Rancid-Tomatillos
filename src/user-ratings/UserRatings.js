@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "./UserRatings.css"
-import SingleMovie from '../single-movie/SingleMovie.js'
 import { getMovieRatings, deleteMovieRatings } from '../apiCalls.js'
 import PropTypes from 'prop-types';
 

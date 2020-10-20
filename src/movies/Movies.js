@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getAllMovies } from '../apiCalls'
 import "./Movies.css"
-import SingleMovie from "../single-movie/SingleMovie.js"
 import {} from "../user-ratings/UserRatings.js"
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';

@@ -5,8 +5,7 @@ import Tomatillos from './images/tomatillo.png';
 import Movies  from './movies/Movies.js';
 import Login from './login/Login.js';
 import SingleMovie  from './single-movie/SingleMovie.js'
-import UserRatings from './user-ratings/UserRatings.js'
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { getUserRatings } from './apiCalls'
 
 class App extends Component {
@@ -39,7 +38,7 @@ class App extends Component {
 
 
   render() {
-    const { movies, isLoading, error } = this.state;
+    const { isLoading, error } = this.state;
 
     if (error) {
       return <p>{'Something went wrong...'}</p>;
@@ -48,7 +47,6 @@ class App extends Component {
     if (isLoading) {
       return <p>Loading...</p>;
     }
-    console.log(this.state)
     return (
       <section>
           <header title='header'>
