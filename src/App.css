@@ -1,9 +1,90 @@
 
+body {
+  background-image: url("./images/cinema.png");
+ }
+
 .logo{
   height: 10rem;
   width: auto;
 }
+
 .flim-reel{
   width: 100%;
   height: 5rem;
+  grid-row-start: 3;
+  margin-top: -75px;
+  background-color: rgba(60, 142, 6, 0.71);
+}
+
+.welcome-text{
+  text-align: center;
+  grid-column-start: 1;
+  font-size: xx-large;
+
+}
+
+.logo{
+  grid-row-start: 1;
+  grid-column-start: 1;
+  margin: 1rem;
+}
+
+.logo:hover{
+  font-size: 1.25rem;
+  color: rgb(42, 100, 4);
+}
+
+.home{
+  grid-row-start: 1;
+  grid-column-start: 1;
+  margin: 2rem;
+  margin-top: 4.5rem;
+  color: rgb(60, 142, 6);
+  text-shadow: 2px 2px 5px #e3e9a3;
+}
+.home:hover{
+  font-size: 1.25rem;
+  color: rgb(42, 100, 4);
+}
+.logo-section{
+  display: grid;
+}
+
+.log-button{
+  font-size: 1.2rem;
+  border-radius: 2rem;
+}
+
+.logout-button{
+  justify-self: right;
+  grid-row-start: 1;
+  grid-column-start: 2;
+  margin: 1rem;
+  margin-right: 2rem;
+}
+
+.login-button{
+  justify-self: right;
+  grid-row-start: 1;
+  grid-column-start: 2;
+  margin-top: 5rem;
+  margin-right: 2.3rem;
+}
+
+.welcome-text{
+  grid-row-start: 2;
+  grid-column-start: 2; 
+  color: rgb(255, 234, 252);
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.login-section-link:link{
+  text-decoration: none;
+}
+.poster-card{
+  background-color: rgba(253, 253, 253, 0.84);
+}
+.image-poster {
+  border-bottom: dashed;
 }
