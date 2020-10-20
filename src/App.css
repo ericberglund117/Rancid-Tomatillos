@@ -85,6 +85,10 @@ body {
 .poster-card{
   background-color: rgba(253, 253, 253, 0.84);
 }
+.poster-card:hover{
+  transform: scale(1.07);
+}
+
 .image-poster {
   border-bottom: dashed;
 }
