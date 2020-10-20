@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./SingleMovie.css"
-import Movies from '../movies/Movies.js'
-import { getSingleMovie, getMovieRatings } from '../apiCalls'
+import { getSingleMovie } from '../apiCalls'
 import UserRatings from '../user-ratings/UserRatings.js'
 import  PropTypes  from 'prop-types';
 
@@ -52,7 +51,14 @@ export default class SingleMovie extends Component {
       return userMovieRating ?
       <h3 className='rating-poster-single'>Your Rating: {userMovieRating.rating} </h3> :
       <h3 className='rating-poster-single'>You Have Not Rated This Movie...Yet</h3>
-    }
+  }
+
+  renderUserRatingsComponent() {
+    return this.state.toggle ? <UserRatings movieID={this.props.movieID}
+    movieRatings={this.props.movieRatings}
+    userStatus={this.props.userStatus}
+    fetchUserRatings={this.props.fetchUserRatings} /> : <></>
+  }
 
   render() {
     return (
@@ -70,12 +76,9 @@ export default class SingleMovie extends Component {
         </h3>
         <button type="button"
                 onClick={event => this.rateMovie(event)}>Rate This Movie!</button>
-        {this.state.toggle ? <UserRatings movieID={this.props.movieID}
-          movieRatings={this.props.movieRatings}
-          userStatus={this.props.userStatus}
-          fetchUserRatings={this.props.fetchUserRatings}/> : <></> }
+        { this.renderUserRatingsComponent() }
         <h3 className='rating-poster-single'>
-          Average Rating: {this.state.singleMovie.average_rating}
+          Average Rating: {Math.round(this.state.singleMovie.average_rating)}
         </h3>
           {this.displaySingleMovieRating(this.props.movieID)}
         <h3 className='overview'>
@@ -105,5 +108,5 @@ SingleMovie.propTypes = {
   fetchUserRatings: PropTypes.func,
   movieID: PropTypes.string,
   userStatus: PropTypes.object,
-  movieRatings: PropTypes.arrayOf(PropTypes.object),
+  movieRatings: PropTypes.arrayOf(PropTypes.object)
 }

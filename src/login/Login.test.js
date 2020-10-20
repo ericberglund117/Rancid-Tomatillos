@@ -8,12 +8,18 @@ import {getUser} from '../apiCalls'
 // import { userEvent } from '@testing-library/user-event'
 jest.mock('../apiCalls.js')
 
+const user = {
+  email: "ken@turing.io",
+  id: 80,
+  name: "Ken"
+}
+const mockSetUser = jest.fn()
 
 describe("Login", () => {
   it('Should see a login input', async () => {
     render(
       <MemoryRouter>
-        <Login  />
+        <Login  setUser={mockSetUser} userId={user.id} />
       </MemoryRouter>
     );
     // check that there is a container element on the page
@@ -27,17 +33,13 @@ describe("Login", () => {
     })
 
   it('Test click event', () => {
+    getUser.mockResolvedValueOnce(user)
     render(
       <MemoryRouter>
-        <Login  />
+        <Login  setUser={mockSetUser} userId={user.id} />
       </MemoryRouter>
     );
     const loginSubmitButton = screen.getByRole('button');
-    getUser.mockResolvedValueOnce( {
-      email: "ken@turing.io",
-      id: 80,
-      name: "Ken"
-    })
     fireEvent.click(screen.getByRole('button'), { name:'Submit' })
     expect(loginSubmitButton).toBeInTheDocument();
     expect(getUser).toHaveBeenCalled();
@@ -46,7 +48,7 @@ describe("Login", () => {
   it('should change input fields when the user is logging in', () => {
     render(
       <MemoryRouter>
-        <Login  />
+        <Login  setUser={mockSetUser} userId={user.id} />
       </MemoryRouter>
     );
     const emailInput = screen.getByPlaceholderText('Email');
@@ -60,15 +62,11 @@ describe("Login", () => {
   it('Should clear input fields after a user has logged in', () => {
     render(
       <MemoryRouter>
-        <Login />
+        <Login setUser={mockSetUser} userId={user.id} />
       </MemoryRouter>
     );
     const loginSubmitButton = screen.getByRole('button');
-    getUser.mockResolvedValueOnce( {
-      email: "ken@turing.io",
-      id: 80,
-      name: "Ken"
-    })
+    getUser.mockResolvedValueOnce(user)
     fireEvent.click(screen.getByRole('button'), { name:'Submit' })
     expect(loginSubmitButton).toBeInTheDocument();
     expect(getUser).toHaveBeenCalled();

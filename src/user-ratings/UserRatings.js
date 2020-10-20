@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import "./UserRatings.css"
-import SingleMovie from '../single-movie/SingleMovie.js'
 import { getMovieRatings, deleteMovieRatings } from '../apiCalls.js'
 import PropTypes from 'prop-types';
 
@@ -11,7 +10,7 @@ export default class UserRatings extends Component {
     super(props);
     this.state = {
       selectedRating: 1,
-      error: '', 
+      error: '',
       delete: false,
     }
     this.changeValue = this.changeValue.bind(this);
@@ -61,13 +60,13 @@ export default class UserRatings extends Component {
           <label className='delete-lable'>
             Already Rated
           </label>
-          <button 
+          <button
             type="button"
             className='delete-button'
             onClick={event => this.deleteRating(event)}>
             Delete Rating
           </button>
-        </section> 
+        </section>
       )
     } else {
         return (
@@ -100,5 +99,5 @@ UserRatings.propTypes = {
   fetchUserRatings: PropTypes.func,
   movieID: PropTypes.string,
   userStatus: PropTypes.object,
-  movieRatings: PropTypes.arrayOf(PropTypes.object),
+  movieRatings: PropTypes.arrayOf(PropTypes.object)
 }

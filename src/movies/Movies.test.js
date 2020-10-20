@@ -11,6 +11,7 @@ jest.mock('../apiCalls.js')
 
 describe("Movies", () => {
   it('should render a movie', async () => {
+    const mockCheckMovieRating = jest.fn()
     const expectedReturn = { movies: [
       {
         id: 694919,
@@ -34,7 +35,7 @@ describe("Movies", () => {
   getAllMovies.mockResolvedValueOnce(expectedReturn)
     render(
       <MemoryRouter>
-        <Movies movieRatings={ratings}/>
+        <Movies movieRatings={ratings} checkMovieRating={mockCheckMovieRating}/>
       </MemoryRouter>
     );
     // check that there is a container element on the page

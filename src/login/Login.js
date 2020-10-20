@@ -20,7 +20,10 @@ class Login extends Component {
   }
 
   submitLogin = (event) => {
-    const newLogin = this.state
+    const newLogin = {
+      email: this.state.email,
+      password: this.state.password
+    }
     this.fetchUser(newLogin)
     this.clearInputs();
   }
@@ -35,15 +38,16 @@ class Login extends Component {
     .catch(error => this.setState({ error: 'Incorrect username or password' }));
   }
 
+  errorHandling() {
+    return !this.state.error ? '' : <p>{this.state.error}</p>
+  }
+
   render() {
-    const { email, password, error } = this.state;
+    const { email, password } = this.state;
       return (
         <form className="login-form" title="login-form">
-        {!error ? '' : <p>{error}</p>}
-        <label 
-          htmlFor="email"
-          className="email-label"
-        >
+        { this.errorHandling() }
+        <label htmlFor="email">
           Email
         </label>
           <input
@@ -51,7 +55,7 @@ class Login extends Component {
             className="email-input"
             placeholder="Email"
             name="email"
-            value={this.state.email}
+            value={email}
             onChange={event => this.handleChange(event)}
           />
           <label 
@@ -65,12 +69,11 @@ class Login extends Component {
             className="password-input"
             placeholder="Password"
             name="password"
-            value={this.state.password}
+            value={password}
             onChange={event => this.handleChange(event)}
           />
           <Link to="/">
             <button
-              role="button"
               type="button"
               className="login-submit"
               onClick={event => this.submitLogin(event)}>

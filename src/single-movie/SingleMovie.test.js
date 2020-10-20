@@ -9,7 +9,7 @@ jest.mock('../apiCalls.js')
 const ratings = [{
   created_at: "2020-10-15T21:31:06.428Z",
   id: 2887,
-  movie_id: 613504,
+  movie_id: 694919,
   rating: 4,
   updated_at: "2020-10-15T21:31:06.428Z",
   user_id: 80
@@ -32,74 +32,78 @@ getSingleMovie.mockResolvedValue({ movie:
    },
  })
 
+
 describe.only("Single Movie", () => {
   it('should render a single movie', async () => {
 
     render(
       <MemoryRouter>
-        <SingleMovie  movieRatings={ratings}/>
+        <SingleMovie  movieRatings={ratings} />
       </MemoryRouter>
     );
-    // check that there is a container element on the page
+
     const moviesContainer = screen.getByTitle("single-movie");
     const moviePoster = await waitFor(() => screen.getByAltText('image-poster-backdrop'))
     expect(moviesContainer).toBeInTheDocument();
     expect(moviePoster).toBeInTheDocument();
     const movieValues = [
-      'Money Plane', 
-      'Release Date: 2020-09-29', 
+      'Money Plane',
+      'Release Date: 2020-09-29',
       'Average Rating: 9',
-      'Overview: A professional thief with $40 million in debt.', 
-      'Genres: Action', 
-      'Budget: 0', 
-      'Revenue: 0', 
-      'Runtime: 82', 
+      'Overview: A professional thief with $40 million in debt.',
+      'Genres: Action',
+      'Budget: 0',
+      'Revenue: 0',
+      'Runtime: 82',
       'They\'re grrreat'
     ]
-    
+
     for (let i = 0; i < movieValues.length; i++) {
-      const movieTitle = await waitFor(() => screen.getByText(movieValues[i])) 
+      const movieTitle = await waitFor(() => screen.getByText(movieValues[i]))
       expect(movieTitle).toBeInTheDocument();
     }
   })
 
-    it('Should be able to see the rated movie', async () => {
+  it('Should be able to see the rated movie', async () => {
+    const user = {
+      email: "ken@turing.io",
+      id: 80,
+      name: "Ken"
+    }
+    const movieID = "694919";
 
-      const movieID="613504";
+    render(
+      <MemoryRouter>
+        <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={user} />
+      </MemoryRouter>
+    )
 
-      render(
-        <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID}/>
-        </MemoryRouter>
-      )
-      expect(screen.getByText("Your Rating: 4")).toBeInTheDocument();
-    })
+    expect(await waitFor(() => screen.getByText("Your Rating: 4"))).toBeInTheDocument();
+  })
 
 
-    it('Should show "You Have Not Rated This Movie...Yet" if the movie is not rated', async () => {
+  it('Should show "You Have Not Rated This Movie...Yet" if the movie is not rated', async () => {
 
-      const movieID="8675309";
+    const movieID="8675309";
 
-      render(
-        <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID}/>
-        </MemoryRouter>
-      )
-      expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();
-    })
+    render(
+      <MemoryRouter>
+        <SingleMovie  movieRatings={ratings} movieID={movieID} />
+      </MemoryRouter>
+    )
+    expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();
+  })
 
-    it('Should alert the user they are not logged in when attpemting to rate a movie', async () => {
+  it('Should alert the user they are not logged in when attpemting to rate a movie', async () => {
 
-      const userStatus = {};
-      const movieID="8675309";
-      
-      render(
-        <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={userStatus}/>
-        </MemoryRouter>
-      )
-      expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();
-    })
+    const userStatus = {};
+    const movieID="8675309";
+
+    render(
+      <MemoryRouter>
+        <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={userStatus} />
+      </MemoryRouter>
+    )
+    expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();
+  })
 })
-
-

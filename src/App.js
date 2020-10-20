@@ -5,8 +5,7 @@ import Tomatillos from './images/tomatillo.png';
 import Movies  from './movies/Movies.js';
 import Login from './login/Login.js';
 import SingleMovie  from './single-movie/SingleMovie.js'
-import UserRatings from './user-ratings/UserRatings.js'
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import { getUserRatings } from './apiCalls'
 
 class App extends Component {
@@ -21,6 +20,7 @@ class App extends Component {
   }
 
   setUser = (newUser) => {
+    console.log('set')
     this.setState({user: newUser})
     this.fetchUserRatings(this.state.user.id)
   }
@@ -36,8 +36,9 @@ class App extends Component {
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
+
   render() {
-    const { movies, isLoading, error } = this.state;
+    const { isLoading, error } = this.state;
 
     if (error) {
       return <p>{'Something went wrong...'}</p>;
@@ -73,18 +74,21 @@ class App extends Component {
             </section>
             </Link>
             <h2 className='welcome-text'> Welcome {this.state.user.name || 'Movie Goer'}!</h2>
-
             <img className='flim-reel' src={Film}/>
           </header>
-              <Route exact path='/' render={ () => <Movies movieRatings={this.state.ratings} /> } />
+          <div role='wrapper'>
+              <Route exact path='/' render={ () => <Movies movieRatings={this.state.ratings} checkMovieRating={this.checkMovieRating}/> } />
               <Route exact path='/signin' render={ () => <Login setUser={this.setUser} userId={this.state.user.id}/> } />
               <Route
                 exact path="/movies/:movie_id"
                 render={({ match }) => {
                   const { movie_id } = match.params;
-                  return <SingleMovie movieID={movie_id} movieRatings={this.state.ratings} userStatus={this.state.user} fetchUserRatings={this.fetchUserRatings}/>
-                }}
-              />
+                  return <SingleMovie movieID={movie_id}
+                  movieRatings={this.state.ratings}
+                  userStatus={this.state.user}
+                  fetchUserRatings={this.fetchUserRatings} />
+                }} />
+          </div>
       </section>
     )
   }
