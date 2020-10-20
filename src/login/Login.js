@@ -38,11 +38,15 @@ class Login extends Component {
     .catch(error => this.setState({ error: 'Incorrect username or password' }));
   }
 
+  errorHandling() {
+    return !this.state.error ? '' : <p>{this.state.error}</p>
+  }
+
   render() {
     const { email, password, error } = this.state;
       return (
         <form className="login-form" title="login-form">
-        {!error ? '' : <p>{error}</p>}
+        { this.errorHandling() }
         <label htmlFor="email">
           Email
         </label>
