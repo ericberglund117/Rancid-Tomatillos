@@ -27,6 +27,7 @@ export default class SingleMovie extends Component {
   }
 
   fetchSingleMovieData(id) {
+    console.log(id)
     getSingleMovie(id)
     .then(data => this.setState({ singleMovie: data.movie }))
     .catch(error => this.setState({ error, isLoading: false}));
@@ -46,6 +47,7 @@ export default class SingleMovie extends Component {
 
   displaySingleMovieRating(movieId) {
     let userRating = this.props.checkMovieRating(movieId)
+    console.log(userRating)
     return userRating ?
       <h3 className='rating-poster-single'>Your Rating: {userRating.rating} </h3> :
       <h3 className='rating-poster-single'>You Have Not Rated This Movie...Yet</h3>

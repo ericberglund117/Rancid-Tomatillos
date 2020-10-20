@@ -32,12 +32,14 @@ getSingleMovie.mockResolvedValue({ movie:
    },
  })
 
+ const mockCheckMovieRating = jest.fn()
+
 describe.only("Single Movie", () => {
   it('should render a single movie', async () => {
 
     render(
       <MemoryRouter>
-        <SingleMovie  movieRatings={ratings}/>
+        <SingleMovie  movieRatings={ratings} checkMovieRating={mockCheckMovieRating}/>
       </MemoryRouter>
     );
     // check that there is a container element on the page
@@ -46,32 +48,37 @@ describe.only("Single Movie", () => {
     expect(moviesContainer).toBeInTheDocument();
     expect(moviePoster).toBeInTheDocument();
     const movieValues = [
-      'Money Plane', 
-      'Release Date: 2020-09-29', 
+      'Money Plane',
+      'Release Date: 2020-09-29',
       'Average Rating: 9',
-      'Overview: A professional thief with $40 million in debt.', 
-      'Genres: Action', 
-      'Budget: 0', 
-      'Revenue: 0', 
-      'Runtime: 82', 
+      'Overview: A professional thief with $40 million in debt.',
+      'Genres: Action',
+      'Budget: 0',
+      'Revenue: 0',
+      'Runtime: 82',
       'They\'re grrreat'
     ]
-    
+
     for (let i = 0; i < movieValues.length; i++) {
-      const movieTitle = await waitFor(() => screen.getByText(movieValues[i])) 
+      const movieTitle = await waitFor(() => screen.getByText(movieValues[i]))
       expect(movieTitle).toBeInTheDocument();
     }
   })
 
     it('Should be able to see the rated movie', async () => {
-
-      const movieID="613504";
+      const user = {
+        email: "ken@turing.io",
+        id: 80,
+        name: "Ken"
+      }
+      const movieID = "694919";
 
       render(
         <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID}/>
+          <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={user} checkMovieRating={mockCheckMovieRating}/>
         </MemoryRouter>
       )
+
       expect(screen.getByText("Your Rating: 4")).toBeInTheDocument();
     })
 
@@ -82,7 +89,7 @@ describe.only("Single Movie", () => {
 
       render(
         <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID}/>
+          <SingleMovie  movieRatings={ratings} movieID={movieID} checkMovieRating={mockCheckMovieRating}/>
         </MemoryRouter>
       )
       expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();
@@ -92,14 +99,12 @@ describe.only("Single Movie", () => {
 
       const userStatus = {};
       const movieID="8675309";
-      
+
       render(
         <MemoryRouter>
-          <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={userStatus}/>
+          <SingleMovie  movieRatings={ratings} movieID={movieID} userStatus={userStatus} checkMovieRating={mockCheckMovieRating}/>
         </MemoryRouter>
       )
       expect(screen.getByText("You Have Not Rated This Movie...Yet")).toBeInTheDocument();
     })
 })
-
-

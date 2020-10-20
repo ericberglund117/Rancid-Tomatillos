@@ -47,6 +47,7 @@ export default class UserRatings extends Component {
   }
 
   render() {
+    console.log(this.props.checkMovieRating)
     if(this.props.checkMovieRating(this.props.movieID)) {
       return (
         <section className='delete-rating'>

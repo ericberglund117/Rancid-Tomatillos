@@ -8,6 +8,7 @@ import UserRatings from './UserRatings.js';
 import { deleteMovieRatings } from '../apiCalls.js'
 jest.mock('../apiCalls.js')
 
+const mockCheckMovieRating = jest.fn()
 
 describe("User Rating A Movie", () => {
   it('Should render the delete options if already rated', () => {
@@ -23,7 +24,7 @@ describe("User Rating A Movie", () => {
 
     render(
       <MemoryRouter>
-        <UserRatings  movieRatings={ratings} movieID={movieID}/>
+        <UserRatings  movieRatings={ratings} movieID={movieID} checkMovieRating={mockCheckMovieRating}/>
       </MemoryRouter>
     )
     expect(screen.getByText('Already Rated')).toBeInTheDocument();
@@ -43,7 +44,7 @@ describe("User Rating A Movie", () => {
 
     render(
       <MemoryRouter>
-        <UserRatings  movieRatings={ratings} movieID={movieID}/>
+        <UserRatings  movieRatings={ratings} movieID={movieID} checkMovieRating={mockCheckMovieRating}/>
       </MemoryRouter>
     )
     expect(screen.getByText('Select a movie rating option(1-lowest, 10-highest)')).toBeInTheDocument();
@@ -63,7 +64,7 @@ describe("User Rating A Movie", () => {
 
     render(
       <MemoryRouter>
-        <UserRatings  movieRatings={ratings} movieID={movieID}/>
+        <UserRatings  movieRatings={ratings} movieID={movieID} checkMovieRating={mockCheckMovieRating}/>
       </MemoryRouter>
     );
     const ratingInputValue = 3
@@ -91,7 +92,7 @@ describe("User Rating A Movie", () => {
 
     render(
       <MemoryRouter>
-        <UserRatings  movieRatings={ratings} movieID={movieID} userStatus={userId}/>
+        <UserRatings  movieRatings={ratings} movieID={movieID} userStatus={userId} checkMovieRating={mockCheckMovieRating}/>
       </MemoryRouter>
     );
 
