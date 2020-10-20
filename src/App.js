@@ -49,20 +49,31 @@ class App extends Component {
     }
     return (
       <section>
-          <header title='header'>
-            <Link to='/'>
-            <h1><img className='logo' src={Tomatillos}/>Rancid Tomatillos</h1>
-            </Link>
-            <h2> Welcome {this.state.user.name || 'Movie Goer'}!</h2>
-              <Link to='/signin'>
-              <button type="button">Login</button>
+          <header className='header'>
+            <Link to='/' className='login-section-link'>
+            <section className= "logo-section">
+              <img className='logo' src={Tomatillos}/>
+              <h1 className='home'>Rancid <br></br>Tomatillos</h1>
+              <Link to='/signin' className='login-button'>
+              <button 
+              type="button" 
+              className='log-button'
+              >
+                Login
+              </button>
               </Link>
-            <Link to="/">
+            <Link to="/" className='logout-button'>
             <button
-              type="button"
-              onClick={event => this.submitLogout(event)}>Logout
+              type="button"  
+              className='log-button'            
+              onClick={event => this.submitLogout(event)}
+            >
+              Logout
             </button>
             </Link>
+            </section>
+            </Link>
+            <h2 className='welcome-text'> Welcome {this.state.user.name || 'Movie Goer'}!</h2>
             <img className='flim-reel' src={Film}/>
           </header>
           <div role='wrapper'>

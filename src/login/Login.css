@@ -1,0 +1,19 @@
+.login-form{
+  text-align-last: center;
+  background-color: rgba(60, 142, 6, 0.71);
+  font-size: x-large;
+}
+.email-label{
+    display: block;
+}
+.password-label{
+    display: block; 
+}
+.login-submit{
+    display: block; 
+    margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.email-input{
+}

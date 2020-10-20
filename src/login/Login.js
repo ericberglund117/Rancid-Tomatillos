@@ -58,7 +58,10 @@ class Login extends Component {
             value={email}
             onChange={event => this.handleChange(event)}
           />
-          <label htmlFor="password">
+          <label 
+            htmlFor="password"
+            className="password-label"
+          >
             Password
           </label>
           <input
