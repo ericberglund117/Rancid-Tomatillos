@@ -55,7 +55,8 @@ export default class SingleMovie extends Component {
     return this.state.toggle ? <UserRatings movieID={this.props.movieID}
     movieRatings={this.props.movieRatings}
     userStatus={this.props.userStatus}
-    fetchUserRatings={this.props.fetchUserRatings}/> : <></>
+    fetchUserRatings={this.props.fetchUserRatings}
+    checkMovieRating={this.props.checkMovieRating} /> : <></>
   }
 
   render() {
