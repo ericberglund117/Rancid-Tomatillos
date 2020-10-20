@@ -37,6 +37,14 @@ class App extends Component {
     .catch(error => this.setState({ error, isLoading: false}));
   }
 
+  checkMovieRating = (movieId) => {
+    let ratings = this.state.ratings
+     let userMovieRating = ratings.find(rating => {
+        return parseInt(movieId) === rating.movie_id
+      })
+      return userMovieRating
+    }
+
   render() {
     const { movies, isLoading, error } = this.state;
 
@@ -67,13 +75,17 @@ class App extends Component {
             <img className='flim-reel' src={Film}/>
           </header>
           <div role='wrapper'>
-              <Route exact path='/' render={ () => <Movies movieRatings={this.state.ratings} /> } />
+              <Route exact path='/' render={ () => <Movies movieRatings={this.state.ratings} checkMovieRating={this.checkMovieRating}/> } />
               <Route exact path='/signin' render={ () => <Login setUser={this.setUser} userId={this.state.user.id}/> } />
               <Route
                 exact path="/movies/:movie_id"
                 render={({ match }) => {
                   const { movie_id } = match.params;
-                  return <SingleMovie movieID={movie_id} movieRatings={this.state.ratings} userStatus={this.state.user} fetchUserRatings={this.fetchUserRatings}/>
+                  return <SingleMovie movieID={movie_id}
+                  movieRatings={this.state.ratings}
+                  userStatus={this.state.user}
+                  fetchUserRatings={this.fetchUserRatings}
+                  checkMovieRating={this.checkMovieRating} />
                 }} />
           </div>
       </section>
