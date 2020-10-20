@@ -40,7 +40,10 @@ class Login extends Component {
       return (
         <form className="login-form" title="login-form">
         {!error ? '' : <p>{error}</p>}
-        <label htmlFor="email">
+        <label 
+          htmlFor="email"
+          className="email-label"
+        >
           Email
         </label>
           <input
@@ -51,7 +54,10 @@ class Login extends Component {
             value={this.state.email}
             onChange={event => this.handleChange(event)}
           />
-          <label htmlFor="password">
+          <label 
+            htmlFor="password"
+            className="password-label"
+          >
             Password
           </label>
           <input

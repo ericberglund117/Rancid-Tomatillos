@@ -40,6 +40,7 @@ export default class Movies extends Component {
               <Link to={`movies/${movie.id}`} key={index} className='poster-card' title='poster-card' id={movie.id}>
                 <img
                   alt='image-poster'
+                  className='image-poster'
                   data-id={movie.id}
                   src={movie.poster_path}
                 />
