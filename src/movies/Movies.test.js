@@ -40,8 +40,8 @@ describe("Movies", () => {
     const movieTitle = await waitFor(() => screen.getByText("Money Plane"))
     const movieDate = await waitFor(() => screen.getByText("Release Date: 2020-09-29"))
     const movieRating = await waitFor(() => screen.getByText("Average Rating: 9"))
-    const moviePoster = await waitFor(() => screen.getByAltText("image-poster"))
-    
+    const moviePoster = await waitFor(() => screen.getByAltText("poster"))
+
     expect(getAllMovies).toHaveBeenCalledTimes(1)
     expect(moviesContainer).toBeInTheDocument();
     expect(movieTitle).toBeInTheDocument();

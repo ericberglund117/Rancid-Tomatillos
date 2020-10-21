@@ -43,7 +43,7 @@ describe.only("Single Movie", () => {
     );
 
     const moviesContainer = screen.getByTitle("single-movie");
-    const moviePoster = await waitFor(() => screen.getByAltText('image-poster-backdrop'))
+    const moviePoster = await waitFor(() => screen.getByAltText('poster-backdrop'))
     expect(moviesContainer).toBeInTheDocument();
     expect(moviePoster).toBeInTheDocument();
     const movieValues = [
