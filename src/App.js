@@ -73,7 +73,6 @@ class App extends Component {
             </section>
             </Link>
             <h2 className='welcome-text'> Welcome {this.state.user.name || 'Movie Goer'}!</h2>
-
             <img className='flim-reel' src={Film}/>
           </header>
               <Route exact path='/' render={ () => <Movies movieRatings={this.state.ratings} /> } />

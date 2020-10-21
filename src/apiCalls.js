@@ -1,3 +1,7 @@
+export const getAllComments = (movieID) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/movies/${movieID}/comments`)
+  .then(response => response.json())
+}
 
 export const getAllMovies = () => {
   return fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
@@ -17,6 +21,21 @@ export const getUser = (login) => {
       'content-type': 'application/json'
     },
     body: JSON.stringify(login)
+  })
+  .then(response => {
+    if (response.ok) {
+      return response.json()
+  }})
+};
+
+export const getComments = (comment, movieID) => {
+  return fetch(`https://rancid-tomatillos.herokuapp.com/api/v1/movies/${movieID}/comments`,
+  {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json'
+    },
+    body: JSON.stringify(comment)
   })
   .then(response => {
     if (response.ok) {
