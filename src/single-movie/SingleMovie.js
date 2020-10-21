@@ -3,7 +3,7 @@ import "./SingleMovie.css"
 import { getSingleMovie } from '../apiCalls'
 import UserRatings from '../user-ratings/UserRatings.js'
 import  PropTypes  from 'prop-types';
-
+import { Commenting } from '../Commenting/Commenting.js'
 
 export default class SingleMovie extends Component {
   constructor(props) {
@@ -99,6 +99,7 @@ export default class SingleMovie extends Component {
         <h3 className='runtime-single'>
           Runtime: {this.state.singleMovie.runtime}
         </h3>
+        <Commenting />
       </section>
     )
   }
