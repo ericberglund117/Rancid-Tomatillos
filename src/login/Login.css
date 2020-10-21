@@ -1,19 +1,21 @@
 .login-form{
   text-align-last: center;
-  background-color: rgba(60, 142, 6, 0.71);
+  background-image: url(../images/Tomatillo-rotton.png);
   font-size: x-large;
 }
 .email-label{
     display: block;
+    font-weight: bold;
 }
 .password-label{
-    display: block; 
+    display: block;
+    font-weight: bold;
 }
 .login-submit{
-    display: block; 
+    display: block;
     margin: auto;
     margin-top: 1rem;
     margin-bottom: 1rem;
-}
-.email-input{
+    font-size: 1.2rem;
+    border-radius: 2rem;
 }

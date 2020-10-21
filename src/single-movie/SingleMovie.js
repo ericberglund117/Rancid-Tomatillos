@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import "./SingleMovie.css"
 import { getSingleMovie } from '../apiCalls'
 import UserRatings from '../user-ratings/UserRatings.js'
@@ -23,17 +23,17 @@ export default class SingleMovie extends Component {
       },
       toggle: false
     };
-  }
+  };
 
   fetchSingleMovieData(id) {
     getSingleMovie(id)
     .then(data => this.setState({ singleMovie: data.movie }))
     .catch(error => this.setState({ error, isLoading: false}));
-  }
+  };
 
   componentDidMount() {
     this.fetchSingleMovieData(this.props.movieID)
-  }
+  };
 
   rateMovie(event) {
     if(Object.keys(this.props.userStatus).length > 0) {
@@ -41,7 +41,7 @@ export default class SingleMovie extends Component {
     } else {
       alert("You have to login in order to give your professional opinion about this movie")
     }
-  }
+  };
 
   displaySingleMovieRating(movieId) {
     let ratings = this.props.movieRatings
@@ -51,14 +51,14 @@ export default class SingleMovie extends Component {
       return userMovieRating ?
       <h3 className='rating-poster-single'>Your Rating: {userMovieRating.rating} </h3> :
       <h3 className='rating-poster-single'>You Have Not Rated This Movie...Yet</h3>
-  }
+  };
 
   renderUserRatingsComponent() {
     return this.state.toggle ? <UserRatings movieID={this.props.movieID}
     movieRatings={this.props.movieRatings}
     userStatus={this.props.userStatus}
     fetchUserRatings={this.props.fetchUserRatings} /> : <></>
-  }
+  };
 
   render() {
     return (
@@ -67,7 +67,7 @@ export default class SingleMovie extends Component {
           {this.state.singleMovie.title}
         </h2>
         <img
-          alt='image-poster-backdrop'
+          alt='poster-backdrop'
           className="image-poster-backdrop"
           src={this.state.singleMovie.backdrop_path}
         />
@@ -101,12 +101,12 @@ export default class SingleMovie extends Component {
         </h3>
       </section>
     )
-  }
-}
+  };
+};
 
 SingleMovie.propTypes = {
   fetchUserRatings: PropTypes.func,
   movieID: PropTypes.string,
   userStatus: PropTypes.object,
   movieRatings: PropTypes.arrayOf(PropTypes.object)
-}
+};
