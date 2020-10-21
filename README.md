@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Rancid-Tomatillos
 
+[deployed page](https://ericberglund117.github.io/Rancid-Tomatillos/)
+
 ## About The Project
 
 This project is part of Turing Software and Designs' Front-End Program, Module 3. The project focuses on building out a web application using the React framework. The program is implemented with ES6 syntax and exclusively uses JavaScript/JSX methods whenever React iterations need to be performed. Multiple databases were supplied; each representing a large chunk of data for a user, movies, single-movie, and ratings . Our task was to create several components containing methods which would dynamically display all the movies from the database and a given user's data on the DOM. This program uses Fetch (GETs, POSTs, and DELETEs), Router, Webpack, and Jest on top of the React framework. These were implemented to test the DOM manipulation functions (Jest), bundle files together (Webpack), and receive/change data available on the server (Fetch). Through all this, a user can view all the available movies, login/logout, rate movies, and delete ratings to make updates. 
