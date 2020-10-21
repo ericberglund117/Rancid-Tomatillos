@@ -13,13 +13,13 @@ export default class Movies extends Component {
       movies: [],
       showComponent: false,
     };
-  }
+  };
 
   componentDidMount () {
     getAllMovies()
     .then(data => this.setState({ movies: data.movies }))
     .catch(error => this.setState({ error, isLoading: false}));
-  }
+  };
 
   displayMovieRating(movieId) {
     let ratings = this.props.movieRatings
@@ -29,14 +29,14 @@ export default class Movies extends Component {
       return userMovieRating ?
       <h3 className='user-rated-poster'>Your Rating: {userMovieRating.rating} </h3> :
       <h3 className='user-rated-poster'>You Have Not Rated This Movie...Yet</h3>
-    }
+  };
 
   displayMovieInformation() {
     return this.state.movies.map((movie, index) => {
       return (
         <Link to={`movies/${movie.id}`} key={index} className='poster-card' title='poster-card' id={movie.id}>
           <img
-            alt='image-poster'
+            alt='poster'
             data-id={movie.id}
             src={movie.poster_path}
           />
@@ -48,7 +48,7 @@ export default class Movies extends Component {
           </section>
         </Link>)
       })
-  }
+  };
 
   render() {
     return (
@@ -56,9 +56,9 @@ export default class Movies extends Component {
           { this.displayMovieInformation() }
         </section>
     )
-  }
+  };
 };
 
 Movies.propTypes = {
   movieRatings: PropTypes.arrayOf(PropTypes.object),
-}
+};

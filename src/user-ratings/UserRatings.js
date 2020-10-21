@@ -3,8 +3,6 @@ import "./UserRatings.css"
 import { getMovieRatings, deleteMovieRatings } from '../apiCalls.js'
 import PropTypes from 'prop-types';
 
-
-
 export default class UserRatings extends Component {
   constructor(props) {
     super(props);
@@ -14,36 +12,36 @@ export default class UserRatings extends Component {
       delete: false,
     }
     this.changeValue = this.changeValue.bind(this);
-  }
+  };
 
   fetchMovieRatingsData(userId, movieId, ratings) {
     getMovieRatings(userId, movieId, ratings)
     .then(() => this.props.fetchUserRatings(userId))
     .catch(error => this.setState({error: error.message}))
-  }
+  };
 
   submitRating(event) {
     const { userStatus, movieID } = this.props
     const rating = this.state.selectedRating
     this.fetchMovieRatingsData(userStatus.id, movieID, rating)
-  }
+  };
 
   fetchDeleteMovieRatings(userID, movieID) {
     deleteMovieRatings(userID, movieID)
      .then(() => this.props.fetchUserRatings(userID))
      .then(() => this.setState({delete: true}))
      .catch(error => this.setState({error: error.message}))
-  }
+  };
 
   deleteRating(event) {
     const { userStatus, movieID } = this.props
     let userMovieRating = this.checkMovieRating(movieID);
     this.fetchDeleteMovieRatings(userStatus.id, userMovieRating.id)
-  }
+  };
 
   changeValue(event) {
     this.setState({selectedRating: event.target.value})
-  }
+  };
 
   checkMovieRating(movieId) {
     let ratings = this.props.movieRatings
@@ -51,7 +49,7 @@ export default class UserRatings extends Component {
         return parseInt(movieId) === rating.movie_id
       })
       return userMovieRating
-    }
+  };
 
   render() {
     if(this.checkMovieRating(this.props.movieID)) {
@@ -92,8 +90,8 @@ export default class UserRatings extends Component {
             </form>
         )
       }
-  }
-}
+  };
+};
 
 UserRatings.propTypes = {
   fetchUserRatings: PropTypes.func,

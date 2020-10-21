@@ -12,12 +12,12 @@ class Login extends Component {
       password: '',
       error: ''
     };
-  }
+  };
 
   handleChange = (event) => {
     const {name, value} = event.target
     this.setState({[name]: value})
-  }
+  };
 
   submitLogin = (event) => {
     const newLogin = {
@@ -26,28 +26,28 @@ class Login extends Component {
     }
     this.fetchUser(newLogin)
     this.clearInputs();
-  }
+  };
 
   clearInputs = () => {
     this.setState({email:'', password:''})
-  }
+  };
 
   fetchUser = (login) => {
     getUser(login)
     .then(data => this.props.setUser(data.user))
     .catch(error => this.setState({ error: 'Incorrect username or password' }));
-  }
+  };
 
   errorHandling() {
     return !this.state.error ? '' : <p>{this.state.error}</p>
-  }
+  };
 
   render() {
     const { email, password } = this.state;
       return (
         <form className="login-form" title="login-form">
         { this.errorHandling() }
-        <label htmlFor="email">
+        <label htmlFor="email" className="email-label">
           Email
         </label>
           <input
@@ -58,7 +58,7 @@ class Login extends Component {
             value={email}
             onChange={event => this.handleChange(event)}
           />
-          <label 
+          <label
             htmlFor="password"
             className="password-label"
           >
@@ -82,12 +82,12 @@ class Login extends Component {
           </Link>
         </form>
       )
-  }
-}
+  };
+};
 
 Login.propTypes = {
   setUser: PropTypes.func,
   userId: PropTypes.number,
-}
+};
 
 export default Login;

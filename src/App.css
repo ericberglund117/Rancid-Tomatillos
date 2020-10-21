@@ -3,7 +3,7 @@ body {
   background-image: url("./images/cinema.png");
  }
 
-.logo{
+img.logo{
   height: 10rem;
   width: auto;
 }
@@ -20,7 +20,6 @@ body {
   text-align: center;
   grid-column-start: 1;
   font-size: xx-large;
-
 }
 
 .logo{
@@ -73,7 +72,7 @@ body {
 
 .welcome-text{
   grid-row-start: 2;
-  grid-column-start: 2; 
+  grid-column-start: 2;
   color: rgb(255, 234, 252);
   margin-bottom: 6px;
   position: relative;

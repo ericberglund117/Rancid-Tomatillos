@@ -10,7 +10,6 @@ export const getSingleMovie = (movieID) => {
 };
 
 export const getUser = (login) => {
-  console.log('damn')
   return fetch("https://rancid-tomatillos.herokuapp.com/api/v2/login",
   {
     method: 'POST',

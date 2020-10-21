@@ -1,12 +1,11 @@
 import React from 'react';
 import { render, waitFor, screen, getByText, getByPlaceholderText,
-  getByAltText, getByRole, getByTitle, fireEvent} from '@testing-library/react'
-import '@testing-library/jest-dom'
-import Login from './Login'
-import { MemoryRouter } from 'react-router-dom'
-import {getUser} from '../apiCalls'
-// import { userEvent } from '@testing-library/user-event'
-jest.mock('../apiCalls.js')
+  getByAltText, getByRole, getByTitle, fireEvent} from '@testing-library/react';
+import '@testing-library/jest-dom';
+import Login from './Login';
+import { MemoryRouter } from 'react-router-dom';
+import { getUser } from '../apiCalls';
+jest.mock('../apiCalls.js');
 
 const user = {
   email: "ken@turing.io",
@@ -22,11 +21,11 @@ describe("Login", () => {
         <Login  setUser={mockSetUser} userId={user.id} />
       </MemoryRouter>
     );
-    // check that there is a container element on the page
+  
     const loginContainer = screen.getByTitle('login-form');
     const emailInput = screen.getByPlaceholderText('Email');
     const passwordInput = screen.getByPlaceholderText('Password');
-    // check that there are movies on the page
+
     expect(loginContainer).toBeInTheDocument();
     expect(emailInput).toBeInTheDocument();
     expect(passwordInput).toBeInTheDocument();

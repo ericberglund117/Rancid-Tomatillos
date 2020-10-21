@@ -6,9 +6,6 @@ import { getAllMovies } from '../apiCalls';
 import '@testing-library/jest-dom'
 jest.mock('../apiCalls.js')
 
-//import {Router} from 'react-router-dom'
-
-
 describe("Movies", () => {
   it('should render a movie', async () => {
     const mockCheckMovieRating = jest.fn()
@@ -38,13 +35,13 @@ describe("Movies", () => {
         <Movies movieRatings={ratings} checkMovieRating={mockCheckMovieRating}/>
       </MemoryRouter>
     );
-    // check that there is a container element on the page
+
     const moviesContainer = screen.getByTitle("movies-list");
     const movieTitle = await waitFor(() => screen.getByText("Money Plane"))
     const movieDate = await waitFor(() => screen.getByText("Release Date: 2020-09-29"))
     const movieRating = await waitFor(() => screen.getByText("Average Rating: 9"))
-    const moviePoster = await waitFor(() => screen.getByAltText("image-poster"))
-    // check that there are movies on the page
+    const moviePoster = await waitFor(() => screen.getByAltText("poster"))
+
     expect(getAllMovies).toHaveBeenCalledTimes(1)
     expect(moviesContainer).toBeInTheDocument();
     expect(movieTitle).toBeInTheDocument();
