@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/Rancid-Tomatillos/static/css/main.22e044d9.chunk.css",
+    "main.js": "/Rancid-Tomatillos/static/js/main.6955d4c0.chunk.js",
+    "main.js.map": "/Rancid-Tomatillos/static/js/main.6955d4c0.chunk.js.map",
+    "runtime-main.js": "/Rancid-Tomatillos/static/js/runtime-main.2455ce0b.js",
+    "runtime-main.js.map": "/Rancid-Tomatillos/static/js/runtime-main.2455ce0b.js.map",
+    "static/js/2.cb548bbb.chunk.js": "/Rancid-Tomatillos/static/js/2.cb548bbb.chunk.js",
+    "static/js/2.cb548bbb.chunk.js.map": "/Rancid-Tomatillos/static/js/2.cb548bbb.chunk.js.map",
+    "index.html": "/Rancid-Tomatillos/index.html",
+    "precache-manifest.c6c7592a3c16b0b31394a83be946beef.js": "/Rancid-Tomatillos/precache-manifest.c6c7592a3c16b0b31394a83be946beef.js",
+    "service-worker.js": "/Rancid-Tomatillos/service-worker.js",
+    "static/css/main.22e044d9.chunk.css.map": "/Rancid-Tomatillos/static/css/main.22e044d9.chunk.css.map",
+    "static/js/2.cb548bbb.chunk.js.LICENSE.txt": "/Rancid-Tomatillos/static/js/2.cb548bbb.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/Rancid-Tomatillos/static/media/cinema.f84560de.png",
+    "static/media/tomatillo.png": "/Rancid-Tomatillos/static/media/tomatillo.f89c729e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2455ce0b.js",
+    "static/js/2.cb548bbb.chunk.js",
+    "static/css/main.22e044d9.chunk.css",
+    "static/js/main.6955d4c0.chunk.js"
+  ]
+}
