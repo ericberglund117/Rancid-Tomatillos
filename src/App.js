@@ -20,7 +20,6 @@ class App extends Component {
   }
 
   setUser = (newUser) => {
-    console.log('set')
     this.setState({user: newUser})
     this.fetchUserRatings(this.state.user.id)
   }
@@ -49,7 +48,7 @@ class App extends Component {
     }
     return (
       <section>
-          <header className='header'>
+          <header className='header' title='header'>
             <Link to='/' className='login-section-link'>
             <section className= "logo-section">
               <img className='logo' src={Tomatillos}/>

@@ -2,16 +2,21 @@
   "name": "rancid-tomatillos",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://ericberglund117.github.io/Rancid-Tomatillos",
   "dependencies": {
+    "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "save-dev": "0.0.1-security"
   },
   "scripts": {
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject"
@@ -32,7 +37,7 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/dom": "^7.26.0",
+    "@testing-library/dom": "^7.26.3",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
     "@testing-library/user-event": "github:testing-library/user-event",

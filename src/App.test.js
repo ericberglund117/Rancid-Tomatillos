@@ -1,11 +1,10 @@
 import React from 'react';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom'
-import { render, screen, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom'
-import { getAllMovies, getUserRatings, getUser } from './apiCalls.js'
-import userEvent from '@testing-library/user-event'
-jest.mock('./apiCalls.js')
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import { getAllMovies, getUserRatings, getUser } from './apiCalls.js';
+jest.mock('./apiCalls.js');
 
 const expectedReturn = { movies: [
   {
@@ -96,12 +95,12 @@ describe('App', () => {
 
     const loginButton = screen.getByRole('button', { name: "Login"})
     expect(loginButton).toBeInTheDocument();
-    userEvent.click(loginButton)
+    fireEvent.click(loginButton)
     const emailInput = screen.getByPlaceholderText('Email');
     const passwordInput = screen.getByPlaceholderText('Password');
-    userEvent.type(screen.getByPlaceholderText('Email'), "ken@turing.io")
-    userEvent.type(screen.getByPlaceholderText('Password'), "654321")
-    userEvent.click(screen.getByRole('button', { name: 'Submit' }))
+    fireEvent.type(screen.getByPlaceholderText('Email'), "ken@turing.io")
+    fireEvent.type(screen.getByPlaceholderText('Password'), "654321")
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }))
     const findUser = await waitFor(() => screen.getByText('Ken'))
     //expect(mockSetUser).toHaveBeenCalledTimes(1)
     // getAllMovies.mockResolvedValueOnce(expectedReturn)
