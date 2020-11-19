@@ -2,6 +2,7 @@ import React from 'react';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom'
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { getAllMovies, getUserRatings, getUser } from './apiCalls.js';
 jest.mock('./apiCalls.js');
