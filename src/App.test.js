@@ -2,7 +2,6 @@ import React from 'react';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom'
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { getAllMovies, getUserRatings, getUser } from './apiCalls.js';
 jest.mock('./apiCalls.js');
@@ -56,11 +55,6 @@ describe('App', () => {
   });
 
   it('Should be able to render a user\'s ratings for movies after logging in', async () => {
-    const user = {
-      email: "ken@turing.io",
-      id: 80,
-      name: "Ken"
-    }
 
     const mockSetUser = jest.fn()
     const expectedReturn = { movies: [
@@ -92,11 +86,14 @@ describe('App', () => {
     fireEvent.click(loginButton)
     const emailInput = screen.getByPlaceholderText('Email');
     const passwordInput = screen.getByPlaceholderText('Password');
-    fireEvent.type(screen.getByPlaceholderText('Email'), "ken@turing.io")
-    fireEvent.type(screen.getByPlaceholderText('Password'), "654321")
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+    fireEvent.change(screen.getByPlaceholderText('Email'), "ken@turing.io")
+    fireEvent.change(screen.getByPlaceholderText('Password'), "654321")
     fireEvent.click(screen.getByRole('button', { name: 'Submit' }))
-    const findUser = await waitFor(() => screen.getByText('Ken'))
 
+    expect(getUser).toHaveBeenCalledTimes(1)
+    expect(mockSetUser).toHaveBeenCalledTimes(1)
     expect(screen.getByRole('wrapper')).toBeInTheDocument();
     expect(await waitFor(() => screen.getByText('Welcome Ken!')))
     expect(await waitFor(() => screen.getByText('Your Rating: 4'))).toBeInTheDocument()
