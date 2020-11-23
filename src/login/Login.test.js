@@ -16,12 +16,13 @@ const mockSetUser = jest.fn()
 
 describe("Login", () => {
   it('Should see a login input', async () => {
+    getUser.mockResolvedValueOnce(user)
     render(
       <MemoryRouter>
         <Login  setUser={mockSetUser} userId={user.id} />
       </MemoryRouter>
     );
-  
+
     const loginContainer = screen.getByTitle('login-form');
     const emailInput = screen.getByPlaceholderText('Email');
     const passwordInput = screen.getByPlaceholderText('Password');
@@ -31,7 +32,7 @@ describe("Login", () => {
     expect(passwordInput).toBeInTheDocument();
     })
 
-  it('Test click event', () => {
+  it('Test click event', async () => {
     getUser.mockResolvedValueOnce(user)
     render(
       <MemoryRouter>
@@ -44,7 +45,7 @@ describe("Login", () => {
     expect(getUser).toHaveBeenCalled();
   });
 
-  it('should change input fields when the user is logging in', () => {
+  it('should change input fields when the user is logging in', async () => {
     render(
       <MemoryRouter>
         <Login  setUser={mockSetUser} userId={user.id} />
@@ -58,7 +59,7 @@ describe("Login", () => {
     fireEvent.change(passwordInput);
   })
 
-  it('Should clear input fields after a user has logged in', () => {
+  it('Should clear input fields after a user has logged in', async () => {
     render(
       <MemoryRouter>
         <Login setUser={mockSetUser} userId={user.id} />
